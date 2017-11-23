@@ -1,38 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">
-
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+        <item android:icon="@drawable/ic_drawer_home" android:id="@+id/drawer_home" android:title="@string/menu_home" />
+        <item android:icon="@drawable/ic_drawer_menu" android:id="@+id/drawer_menu" android:title="@string/menu_product" />
+        <item android:icon="@drawable/ic_drawer_cart" android:id="@+id/drawer_cart" android:title="@string/menu_cart" />
+        <item android:icon="@drawable/ic_drawer_reservation" android:id="@+id/drawer_reservation" android:title="@string/menu_reservation" />
+        <item android:icon="@drawable/ic_drawer_gallery" android:id="@+id/drawer_gallery" android:title="@string/menu_gallery" />
+        <item android:icon="@drawable/ic_drawer_news" android:id="@+id/drawer_news" android:title="@string/menu_news" />
+        <item android:icon="@drawable/ic_drawer_location" android:id="@+id/drawer_location" android:title="@string/menu_location" />
+        <item android:icon="@drawable/ic_drawer_social" android:id="@+id/drawer_social" android:title="@string/menu_social" />
+        <item android:icon="@drawable/ic_drawer_info" android:id="@+id/drawer_info" android:title="@string/menu_info" />
+        <item android:icon="@drawable/ic_drawer_about" android:id="@+id/drawer_about" android:title="@string/menu_about" />
+        <item android:icon="@drawable/ic_drawer_share" android:id="@+id/drawer_share" android:title="@string/menu_share" />
     </group>
-
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
-
 </menu>
