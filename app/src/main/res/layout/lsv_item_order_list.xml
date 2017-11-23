@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.balysv.materialripple.MaterialRippleLayout android:id="@+id/ripple" android:padding="10dp" android:layout_width="match_parent" android:layout_height="wrap_content" app:mrl_rippleColor="@color/ripple_color" app:mrl_rippleOverlay="true" app:mrl_rippleAlpha="0.2" app:mrl_rippleHover="true" app:mrl_rippleDelayClick="true">
+        <LinearLayout  android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:weightSum="1.0">
+            <TextView android:textSize="16sp" android:textStyle="bold" android:id="@+id/txtMenuName" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Bakso" android:layout_weight="0.5" />
+            <TextView android:textSize="16sp" android:gravity="start" android:id="@+id/txtQuantity" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="2" android:layout_weight="0.2" />
+            <TextView android:textSize="16sp" android:gravity="start" android:id="@+id/txtPrice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="5 USD" android:layout_weight="0.3" />
+        </LinearLayout>
+    </com.balysv.materialripple.MaterialRippleLayout>
+</RelativeLayout>

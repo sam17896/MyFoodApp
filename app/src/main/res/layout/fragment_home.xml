@@ -17,7 +17,7 @@
             custom:fitsSystemWindows="true"
             custom:layout_width="match_parent"
             custom:layout_height="match_parent"
-            app:layout_scrollFlags="exitUntilCollapsed"
+            app:layout_scrollFlags="scroll"
             app:expandedTitleMarginStart="48dp"
             app:expandedTitleMarginEnd="64dp"
             app:expandedTitleTextAppearance="@color/colorAccent"

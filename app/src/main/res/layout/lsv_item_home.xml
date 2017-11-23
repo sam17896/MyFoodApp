@@ -15,7 +15,7 @@
             app:mrl_rippleHover="true" app:mrl_rippleDelayClick="true">
 
             <LinearLayout card_view:orientation="vertical" card_view:id="@+id/linearLayout" card_view:layout_width="match_parent" card_view:layout_height="match_parent">
-                <com.solodroid.yourrestaurantapp.utilities.SquareImageView card_view:id="@+id/thumbnail" card_view:layout_width="match_parent" card_view:layout_height="match_parent" card_view:scaleType="centerCrop" />
+                <com.example.ahsan.myfoodapp.utilities.SquareImageView card_view:id="@+id/thumbnail" card_view:layout_width="match_parent" card_view:layout_height="match_parent" card_view:scaleType="centerCrop" />
                 <TextView card_view:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end" card_view:id="@+id/title" card_view:padding="10dp" card_view:layout_width="match_parent" card_view:layout_height="wrap_content" card_view:text="title" />
             </LinearLayout>
         </com.balysv.materialripple.MaterialRippleLayout>

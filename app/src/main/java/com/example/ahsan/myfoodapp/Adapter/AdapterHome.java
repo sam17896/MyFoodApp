@@ -21,6 +21,7 @@ import com.example.ahsan.myfoodapp.Activity.ActivityReservation;
 import com.example.ahsan.myfoodapp.Activity.ActivityTabInformation;
 import com.example.ahsan.myfoodapp.Activity.ActivityTabSocial;
 import com.example.ahsan.myfoodapp.Models.ItemHome;
+import com.example.ahsan.myfoodapp.R;
 
 import java.util.List;
 
