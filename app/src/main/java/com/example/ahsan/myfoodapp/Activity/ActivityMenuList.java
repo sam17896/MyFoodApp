@@ -127,16 +127,27 @@ public class ActivityMenuList extends AppCompatActivity {
        Intent iGet = getIntent();
         this.Category_ID = iGet.getStringExtra("category_id");
         this.Category_name = iGet.getStringExtra("category_name");
-    if (getSupportActionBar() != null) {
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setTitle(this.Category_name);
         }
         arrayItemMenu =  new ArrayList<>();
-        arrayItemMenu.add(new ItemMenu("1","https://static.pexels.com/photos/69056/barbecue-meat-grill-fire-69056.jpeg","Menu1","300","4"));
-        arrayItemMenu.add(new ItemMenu("2","https://static.pexels.com/photos/403932/pexels-photo-403932.jpeg","Menu2","400","2"));
-        arrayItemMenu.add(new ItemMenu("3","https://static.pexels.com/photos/209406/pexels-photo-209406.jpeg","Menu3","500","3"));
+        if(Category_ID.equals("3")){
+            arrayItemMenu.add(new ItemMenu("1",R.drawable.rice2,"Biryani","500","2"));
+            arrayItemMenu.add(new ItemMenu("2",R.drawable.rice3,"Chinese Rice","400","2"));
+            arrayItemMenu.add(new ItemMenu("3",R.drawable.rice1,"Dal Chawal","300","2"));
 
+        } else if(Category_ID.equals("2")){
+            arrayItemMenu.add(new ItemMenu("4",R.drawable.bbq1,"Grilled Chicken","300","4"));
+            arrayItemMenu.add(new ItemMenu("5",R.drawable.bbq2,"Seekh Boti","400","2"));
+            arrayItemMenu.add(new ItemMenu("6",R.drawable.bbq3,"Chicken Tikka","500","3"));
+        } else if(Category_ID.equals("1")){
+            arrayItemMenu.add(new ItemMenu("7",R.drawable.beverage1,"Coffee","100","1"));
+            arrayItemMenu.add(new ItemMenu("8",R.drawable.beverage3,"Lemon Juice","80","1"));
+            arrayItemMenu.add(new ItemMenu("9",R.drawable.beverage2,"Tea","80","1"));
+
+        }
 
         this.adapterMenu = new AdapterMenu(this, this.arrayItemMenu);
         recyclerView.setAdapter(adapterMenu);

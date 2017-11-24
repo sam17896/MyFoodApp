@@ -30,7 +30,8 @@
         <activity android:name=".Activity.ActivityAbout" />
         <activity android:name=".Activity.ActivityGalleryDetail" />
         <activity android:name=".Activity.ActivityMenuList" />
-        <activity android:name=".Activity.ActivityMenuDetail"></activity>
+        <activity android:name=".Activity.ActivityMenuDetail" />
+        <activity android:name=".Activity.ActivityNewsDetail"></activity>
     </application>
 
 </manifest>

@@ -36,6 +36,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.ahsan.myfoodapp.BuildConfig;
 import com.example.ahsan.myfoodapp.R;
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -49,7 +50,7 @@ public class ActivityMenuDetail extends AppCompatActivity {
 
     String Menu_ID;
     String Menu_description;
-    String Menu_image;
+    int Menu_image;
     String Menu_name;
     String Menu_price;
     private AppBarLayout appBarLayout;
@@ -85,7 +86,7 @@ public class ActivityMenuDetail extends AppCompatActivity {
         Intent iGet = getIntent();
         this.Menu_ID = iGet.getStringExtra("menu_id");
         this.Menu_name = iGet.getStringExtra("menu_name");
-        this.Menu_image = iGet.getStringExtra("menu_image");
+        this.Menu_image = iGet.getIntExtra("menu_image",0);
         Glide.with(imageView.getContext()).load(Menu_image).into(imageView);
         Menu_price = iGet.getStringExtra("menu_price");
         serve_for = iGet.getStringExtra("menu_servefor");

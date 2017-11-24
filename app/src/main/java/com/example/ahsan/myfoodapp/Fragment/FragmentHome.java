@@ -121,7 +121,7 @@ public class FragmentHome extends Fragment {
         this.mDemoSlider.setPresetIndicator(PresetIndicators.Center_Bottom);
         this.mDemoSlider.setCustomAnimation(new DescriptionAnimation());
         this.mDemoSlider.setDuration(5000);
-        this.recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+        this.recyclerView =  view.findViewById(R.id.recycler_view);
         this.itemHomeList = new ArrayList();
         this.adapter = new AdapterHome(getActivity(), this.itemHomeList);
         this.recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
@@ -143,16 +143,16 @@ public class FragmentHome extends Fragment {
     }
 
     private void prepareMenu() {
-        int[] position = new int[]{R.drawable.menu_image1, R.drawable.menu_image2, R.drawable.menu_image3, R.drawable.menu_image4, R.drawable.menu_image5, R.drawable.menu_image6, R.drawable.menu_image7, R.drawable.menu_image8, R.drawable.menu_image9};
+        int[] position = new int[]{R.drawable.menu_image1, R.drawable.menu_image2, R.drawable.menu_image3, R.drawable.menu_image4, R.drawable.menu_image5, R.drawable.menu_image6};
         this.itemHomeList.add(new ItemHome(getResources().getString(R.string.menu_product), position[0]));
         this.itemHomeList.add(new ItemHome(getResources().getString(R.string.menu_cart), position[1]));
         this.itemHomeList.add(new ItemHome(getResources().getString(R.string.menu_reservation), position[2]));
         this.itemHomeList.add(new ItemHome(getResources().getString(R.string.menu_gallery), position[3]));
         this.itemHomeList.add(new ItemHome(getResources().getString(R.string.menu_news), position[4]));
         this.itemHomeList.add(new ItemHome(getResources().getString(R.string.menu_location), position[5]));
-        this.itemHomeList.add(new ItemHome(getResources().getString(R.string.menu_social), position[6]));
-        this.itemHomeList.add(new ItemHome(getResources().getString(R.string.menu_info), position[7]));
-        this.itemHomeList.add(new ItemHome(getResources().getString(R.string.menu_about), position[8]));
+//        this.itemHomeList.add(new ItemHome(getResources().getString(R.string.menu_social), position[6]));
+//        this.itemHomeList.add(new ItemHome(getResources().getString(R.string.menu_info), position[7]));
+//        this.itemHomeList.add(new ItemHome(getResources().getString(R.string.menu_about), position[8]));
         this.adapter.notifyDataSetChanged();
     }
 

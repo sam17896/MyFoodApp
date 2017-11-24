@@ -2,10 +2,10 @@ package com.example.ahsan.myfoodapp.Models;
 
 public class ItemCategory {
     private String CategoryId;
-    private String CategoryImage;
+    private int CategoryImage;
     private String CategoryName;
 
-    public ItemCategory(String categoryid, String categoryname, String categoryimage) {
+    public ItemCategory(String categoryid, String categoryname, int categoryimage) {
         this.CategoryId = categoryid;
         this.CategoryName = categoryname;
         this.CategoryImage = categoryimage;
@@ -15,11 +15,11 @@ public class ItemCategory {
         return this.CategoryName;
     }
 
-    public void setCategoryImage(String categoryimage) {
+    public void setCategoryImage(int categoryimage) {
         this.CategoryImage = categoryimage;
     }
 
-    public String getCategoryImage() {
+    public int getCategoryImage() {
         return this.CategoryImage;
     }
 

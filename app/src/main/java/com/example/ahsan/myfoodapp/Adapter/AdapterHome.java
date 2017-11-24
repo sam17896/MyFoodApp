@@ -52,7 +52,7 @@ public class AdapterHome extends Adapter<AdapterHome.ViewHolder> {
     }
 
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        ItemHome itemHome = (ItemHome) this.itemHomeList.get(position);
+        ItemHome itemHome = this.itemHomeList.get(position);
         holder.title.setText(itemHome.getName());
         holder.thumbnail.setImageResource(itemHome.getThumbnail());
         holder.linearLayout.setOnClickListener(new OnClickListener() {
@@ -69,12 +69,6 @@ public class AdapterHome extends Adapter<AdapterHome.ViewHolder> {
                     AdapterHome.this.context.startActivity(new Intent(AdapterHome.this.context, ActivityNews.class));
                 } else if (position == 5) {
                     AdapterHome.this.context.startActivity(new Intent(AdapterHome.this.context, ActivityLocation.class));
-                } else if (position == 6) {
-                    AdapterHome.this.context.startActivity(new Intent(AdapterHome.this.context, ActivityTabSocial.class));
-                } else if (position == 7) {
-                    AdapterHome.this.context.startActivity(new Intent(AdapterHome.this.context, ActivityTabInformation.class));
-                } else if (position == 8) {
-                    AdapterHome.this.context.startActivity(new Intent(AdapterHome.this.context, ActivityAbout.class));
                 }
             }
         });

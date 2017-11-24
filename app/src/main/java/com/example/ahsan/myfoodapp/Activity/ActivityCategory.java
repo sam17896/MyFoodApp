@@ -135,9 +135,9 @@ public class ActivityCategory extends AppCompatActivity {
         this.recyclerView.setLayoutManager(mLayoutManager);
         this.recyclerView.setItemAnimator(new DefaultItemAnimator());
         arrayItemCategory = new ArrayList<>();
-        arrayItemCategory.add(new ItemCategory("1","Category 1", "https://static.pexels.com/photos/128242/pexels-photo-128242.jpeg"));
-        arrayItemCategory.add(new ItemCategory("2","Category 2", "https://static.pexels.com/photos/533325/pexels-photo-533325.jpeg"));
-        arrayItemCategory.add(new ItemCategory("3","Category 3", "https://static.pexels.com/photos/263173/pexels-photo-263173.jpeg"));
+        arrayItemCategory.add(new ItemCategory("1","Beverages", R.drawable.category1));
+        arrayItemCategory.add(new ItemCategory("2","BBQ", R.drawable.category2));
+        arrayItemCategory.add(new ItemCategory("3","Rice", R.drawable.category3));
 
         this.adapterCategory = new AdapterCategory(this, this.arrayItemCategory);
         recyclerView.setAdapter(adapterCategory);

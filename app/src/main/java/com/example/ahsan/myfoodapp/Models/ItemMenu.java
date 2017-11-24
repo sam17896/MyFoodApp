@@ -2,12 +2,12 @@ package com.example.ahsan.myfoodapp.Models;
 
 public class ItemMenu {
     private String MenuId;
-    private String MenuImage;
+    private int MenuImage;
     private String MenuName;
     private String MenuPrice;
     private String ServeFor;
 
-    public ItemMenu(String menuId, String menuImage, String menuName, String menuPrice,String ServeFor) {
+    public ItemMenu(String menuId, int menuImage, String menuName, String menuPrice,String ServeFor) {
         this.MenuId = menuId;
         this.MenuImage = menuImage;
         this.MenuName = menuName;
@@ -31,11 +31,11 @@ public class ItemMenu {
         this.MenuId = menuId;
     }
 
-    public String getMenuImage() {
+    public int getMenuImage() {
         return this.MenuImage;
     }
 
-    public void setMenuImage(String menuImage) {
+    public void setMenuImage(int menuImage) {
         this.MenuImage = menuImage;
     }
 

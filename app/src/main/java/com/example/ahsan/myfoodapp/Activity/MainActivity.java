@@ -94,22 +94,6 @@ public class MainActivity extends AppCompatActivity
             case R.id.drawer_location /*2131689760*/:
                 startActivity(new Intent(getApplicationContext(), ActivityLocation.class));
                 return true;
-            case R.id.drawer_social /*2131689761*/:
-                startActivity(new Intent(getApplicationContext(), ActivityTabSocial.class));
-                return true;
-            case R.id.drawer_info /*2131689762*/:
-                startActivity(new Intent(getApplicationContext(), ActivityTabInformation.class));
-                return true;
-            case R.id.drawer_about /*2131689763*/:
-                startActivity(new Intent(getApplicationContext(), ActivityAbout.class));
-                return true;
-            case R.id.drawer_share /*2131689764*/:
-                Intent sendInt = new Intent("android.intent.action.SEND");
-                sendInt.putExtra("android.intent.extra.SUBJECT", getString(R.string.app_name));
-                sendInt.putExtra("android.intent.extra.TEXT", getString(R.string.app_name) + "\n" + getString(R.string.share_content) + "\n" + "https://play.google.com/store/apps/details?id=" + getPackageName());
-                sendInt.setType("text/plain");
-                startActivity(Intent.createChooser(sendInt, "Share"));
-                return true;
             default:
                 return false;
         }
@@ -130,7 +114,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(8388611)) {
             drawer.closeDrawer(8388611);
         } else {
