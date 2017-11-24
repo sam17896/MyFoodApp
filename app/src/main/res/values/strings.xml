@@ -54,13 +54,7 @@
     <string name="action_checkout">Reservation</string>
     <string name="action_clear">Clear All</string>
     <string name="action_save">Save Image</string>
-    <string name="action_settings">Save Setting</string>
-    <string name="address">Address : Menuran RT 01 RW 06, Baki, Sukoharjo, Jawa Tengah Indonesia &lt;br&gt;&lt;br&gt; &lt;i&gt;Email : developer.solodroid@gmail.com&lt;/i&gt;</string>
-    <string name="app_copyright">Copyright © 2016 Solodroid Developer \n All rights reserved</string>
-    <string name="app_description">best solution for your mobile restaurant app</string>
-    <string name="app_email">developer.solodroid@gmail.com</string>
-    <string name="app_name">Your Restaurant App</string>
-    <string name="app_version">Version 1.0.0</string>
+    <string name="action_settings">Setting</string>
     <string name="appbar_scrolling_view_behavior">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
     <string name="bottom_sheet_behavior">android.support.design.widget.BottomSheetBehavior</string>
     <string name="button_send">Send</string>
@@ -78,7 +72,6 @@
     <string name="clear_one_order">Do you want to clear this order?</string>
     <string name="clear_order">Clear all order</string>
     <string name="confirm">Confirmation</string>
-    <string name="contact">&lt;p&gt;Do you still feel confused by the system that you need? Do not worry, please contact us now! Gladly we will help resolve your needs.&lt;/p&gt; &lt;p&gt;Address : Menuran RT 01 RW 06, Baki, Sukoharjo, Jawa Tengah Indonesia&lt;/p&gt; &lt;p&gt;Email : developer.solodroid@gmail.com&lt;/p&gt; &lt;p&gt;or use the contact form provided.&lt;/p&gt;</string>
     <string name="db_exist_alert">Do you want to remove your previous order?</string>
     <string name="default_web_client_id">543214849347-hu8ofspfbog1hnhheuoj8hn52os72kmr.apps.googleusercontent.com</string>
     <string name="detail">Detail</string>
@@ -87,17 +80,10 @@
     <string name="drawer_content_on">0</string>
     <string name="drawer_open">Slider Menu Opened</string>
     <string name="drawer_visibility">@string/drawer_content_on</string>
-    <string name="facebook_url">https://www.facebook.com/solodroid.net</string>
     <string name="failed_alert">Your Reservation has not been sent.</string>
     <string name="failed_connect_network">Failed to connect internet!</string>
-    <string name="firebase_database_url">https://solodroid-projects.firebaseio.com</string>
     <string name="form_alert">Please, complete the form first.</string>
-    <string name="gcm_defaultSenderId">543214849347</string>
-    <string name="google_api_key">AIzaSyBQyquEcpEW5JmAMXmDnYPiKy_0xUqO1p8</string>
-    <string name="google_app_id">1:543214849347:android:3152d81b85d78be9</string>
-    <string name="google_crash_reporting_api_key">AIzaSyBQyquEcpEW5JmAMXmDnYPiKy_0xUqO1p8</string>
     <string name="google_map_key">AIzaSyArS1QSHnaJ0FoNq5pkLPc_rdAY_JjVHEg</string>
-    <string name="google_storage_bucket">solodroid-projects.appspot.com</string>
     <string name="hint_email_message">Message :</string>
     <string name="hint_email_subject">Subject :</string>
     <string name="information_tab1">Profile</string>
@@ -115,8 +101,6 @@
     <string name="menu_reservation">Reservation</string>
     <string name="menu_share">Share</string>
     <string name="menu_social">Social</string>
-    <string name="more_apps">https://play.google.com/store/apps/developer?id=Solodroid</string>
-    <string name="more_summary">More apps from developer</string>
     <string name="news_detail">Detail</string>
     <string name="no_internet">Please, enable internet connection before using this app</string>
     <string name="no_order">Your Cart is Empty, Please Order first.</string>
@@ -128,7 +112,6 @@
     <string name="option_yes">Yes</string>
     <string name="order">Order</string>
     <string name="order_alert">You have not ordered yet</string>
-    <string name="profile">&lt;p&gt;&lt;b&gt;Your Restaurant App&lt;/b&gt; is a mobile restaurant reservation system which run under Android platform that used for promotion and selling your product with single application. With powerful admin panel can manage the order, create unlimited category and restaurant menu, also can configurations such as currency, tax, user, etc from admin panel on the web. you can add, update, update or change that restaurant menu, category, tax, currency and change admin password with generate password, etc.&lt;/p&gt; &lt;p&gt;This application created by Android for client side and then PHP MySql for Admin side. Run under Android platform which is the most popular operating system in the world. Using this application you can save your money and time in creating mobile restaurant reservation application.&lt;/p&gt;</string>
     <string name="rate_summary">Give your rate and feedback</string>
     <string name="search_hint">Hint</string>
     <string name="search_query_text">Search…</string>

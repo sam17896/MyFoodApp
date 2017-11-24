@@ -8,9 +8,9 @@ public class ItemCart {
     private String MenuId;
     private String MenuName;
     private String MenuPrice;
-    private String MenuQuantity;
+    private int MenuQuantity;
 
-    public ItemCart(String menuId, String menuName, String menuQuantity, String menuPrice) {
+    public ItemCart(String menuId, String menuName, int menuQuantity, String menuPrice) {
         this.MenuId = menuId;
         this.MenuName = menuName;
         this.MenuQuantity = menuQuantity;
@@ -33,11 +33,11 @@ public class ItemCart {
         this.MenuName = menuName;
     }
 
-    public String getMenuQuantity() {
+    public int getMenuQuantity() {
         return this.MenuQuantity;
     }
 
-    public void setMenuQuantity(String menuQuantity) {
+    public void setMenuQuantity(int menuQuantity) {
         this.MenuQuantity = menuQuantity;
     }
 

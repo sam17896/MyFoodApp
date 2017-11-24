@@ -25,9 +25,9 @@ public class AdapterCart extends Adapter<AdapterCart.ViewHolder> {
 
         public ViewHolder(View view) {
             super(view);
-            this.txtMenuName = (TextView) view.findViewById(R.id.txtMenuName);
-            this.txtQuantity = (TextView) view.findViewById(R.id.txtQuantity);
-            this.txtPrice = (TextView) view.findViewById(R.id.txtPrice);
+            this.txtMenuName =  view.findViewById(R.id.txtMenuName);
+            this.txtQuantity =  view.findViewById(R.id.txtQuantity);
+            this.txtPrice =  view.findViewById(R.id.txtPrice);
         }
     }
 
@@ -43,7 +43,7 @@ public class AdapterCart extends Adapter<AdapterCart.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         ItemCart itemCart = arrayItemCart.get(position);
         holder.txtMenuName.setText(itemCart.getMenuName());
-        holder.txtQuantity.setText(itemCart.getMenuQuantity());
+        holder.txtQuantity.setText(""+itemCart.getMenuQuantity());
         holder.txtPrice.setText(itemCart.getMenuPrice() + " Rs");
     }
 

@@ -1,7 +1,9 @@
 package com.example.ahsan.myfoodapp.Activity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -21,13 +23,16 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
+import android.text.InputFilter;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -36,6 +41,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.ahsan.myfoodapp.BuildConfig;
 import com.example.ahsan.myfoodapp.R;
+import com.example.ahsan.myfoodapp.utilities.Preference;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
@@ -65,6 +71,7 @@ public class ActivityMenuDetail extends AppCompatActivity {
     TextView txtName;
     TextView txtPeople;
     TextView txtPrice;
+    Preference preference;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,9 +85,10 @@ public class ActivityMenuDetail extends AppCompatActivity {
         this.coordinatorLayout =  findViewById(R.id.main_content);
         this.progressBar =  findViewById(R.id.prgLoading);
         this.txtAlert =  findViewById(R.id.txtAlert);
+        preference = new Preference(this);
         (findViewById(R.id.btnAdd)).setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-
+                inputDialog();
             }
         });
         Intent iGet = getIntent();
@@ -154,6 +162,41 @@ public class ActivityMenuDetail extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+
+    public void inputDialog() {
+            View mView = LayoutInflater.from(this.context).inflate(R.layout.input_dialog, null);
+            AlertDialog.Builder alert = new AlertDialog.Builder(this.context);
+            alert.setView(mView);
+            final EditText edtQuantity = (EditText) mView.findViewById(R.id.userInputDialog);
+            alert.setCancelable(false);
+            edtQuantity.setFilters(new InputFilter[]{new InputFilter.LengthFilter(3)});
+            edtQuantity.setInputType(2);
+            alert.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    String temp = edtQuantity.getText().toString();
+                    if (temp.equalsIgnoreCase(BuildConfig.FLAVOR)) {
+                        dialog.cancel();
+                        return;
+                    }
+                    int quantity = Integer.parseInt(temp);
+                    Toast.makeText(context, temp, Toast.LENGTH_SHORT).show();
+                    add(quantity);
+                }
+            });
+            alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.cancel();
+                }
+            });
+            alert.create().show();
+    }
+
+    public void add(int quantity){
+        preference.addName(Menu_name);
+        preference.addQuantity(quantity);
+        preference.addPrice(Menu_price);
+        Toast.makeText(context, "Added to Cart", Toast.LENGTH_SHORT).show();
     }
 
     protected void onDestroy() {

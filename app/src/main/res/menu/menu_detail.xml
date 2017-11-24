@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/buy" android:orderInCategory="100" android:title="@string/action_buy"  app:showAsAction="collapseActionView" />
     <item android:id="@+id/cart" android:orderInCategory="100" android:title="@string/action_cart" app:showAsAction="collapseActionView" />
-    <item android:id="@+id/checkout" android:orderInCategory="100" android:title="@string/action_checkout" app:showAsAction="collapseActionView" />
-    <item android:id="@+id/save" android:orderInCategory="100" android:title="@string/action_save" app:showAsAction="collapseActionView" />
     <item android:icon="@drawable/ic_share" android:id="@+id/share" android:orderInCategory="100" android:title="@string/action_buy" app:showAsAction="ifRoom" />
 </menu>

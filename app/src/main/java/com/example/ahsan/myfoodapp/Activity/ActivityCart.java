@@ -36,6 +36,7 @@ import android.widget.TextView;
 import com.example.ahsan.myfoodapp.Adapter.AdapterCart;
 import com.example.ahsan.myfoodapp.Models.ItemCart;
 import com.example.ahsan.myfoodapp.R;
+import com.example.ahsan.myfoodapp.utilities.Preference;
 import com.example.ahsan.myfoodapp.utilities.RoundedImageView;
 
 import java.io.BufferedReader;
@@ -53,10 +54,6 @@ import org.json.JSONObject;
 
 public class ActivityCart extends AppCompatActivity {
     public static String Currency;
-    public static ArrayList<Integer> Menu_ID = new ArrayList();
-    public static ArrayList<String> Menu_name = new ArrayList();
-    public static ArrayList<Integer> Quantity = new ArrayList();
-    public static ArrayList<Double> Sub_total_price = new ArrayList();
     public static double Tax;
     AdapterCart AdapterCart;
     final int CLEAR_ALL_ORDER = 0;
@@ -75,6 +72,7 @@ public class ActivityCart extends AppCompatActivity {
     TextView txtAlert;
     TextView txtTotal;
     TextView txtTotalLabel;
+    Preference preference;
 
     public interface ClickListener {
         void onClick(View view, int i);
@@ -159,15 +157,15 @@ public class ActivityCart extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setTitle(R.string.title_cart);
         }
-        this.prgLoading = (ProgressBar) findViewById(R.id.prgLoading);
-        this.recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        this.txtTotalLabel = (TextView) findViewById(R.id.txtTotalLabel);
-        this.txtTotal = (TextView) findViewById(R.id.txtTotal);
-        this.txtAlert = (TextView) findViewById(R.id.txtAlert);
-        this.btn_reservation = (Button) findViewById(R.id.btn_reservation);
+        this.prgLoading =  findViewById(R.id.prgLoading);
+        this.recyclerView =  findViewById(R.id.recycler_view);
+        this.txtTotalLabel =  findViewById(R.id.txtTotalLabel);
+        this.txtTotal =  findViewById(R.id.txtTotal);
+        this.txtAlert =  findViewById(R.id.txtAlert);
+        this.btn_reservation =  findViewById(R.id.btn_reservation);
         this.btn_reservation.setOnClickListener(new OnClickListener() {
             public void onClick(View view) {
-                ActivityCart.this.startActivity(new Intent(ActivityCart.this, ActivityReservation.class));
+                ActivityCart.this.startActivity(new Intent(ActivityCart.this, ActivityCheckOut.class));
             }
         });
         LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -177,17 +175,32 @@ public class ActivityCart extends AppCompatActivity {
         this.lytOrder = (RelativeLayout) findViewById(R.id.lytOrder);
         //this.TaxCurrencyAPI = Config.ADMIN_PANEL_URL + "/api/get-tax-and-currency.php" + "?accesskey=" + Utils.ACCESS_KEY;
         arrayItemCart = new ArrayList<>();
-        arrayItemCart.add(new ItemCart("1","Menu1","2","300"));
-        arrayItemCart.add(new ItemCart("1","Menu1","2","300"));
-        arrayItemCart.add(new ItemCart("1","Menu1","2","300"));
-        arrayItemCart.add(new ItemCart("1","Menu1","2","300"));
-        AdapterCart = new AdapterCart(this, arrayItemCart);
-        recyclerView.setAdapter(AdapterCart);
+//        arrayItemCart.add(new ItemCart("1","Menu1","2","300"));
+//        arrayItemCart.add(new ItemCart("1","Menu1","2","300"));
+//        arrayItemCart.add(new ItemCart("1","Menu1","2","300"));
+//        arrayItemCart.add(new ItemCart("1","Menu1","2","300"));
+        preference = new Preference(this);
+        if(preference.getCount()>0){
+            txtAlert.setVisibility(View.GONE);
+            lytOrder.setVisibility(View.VISIBLE);
+            arrayItemCart = preference.getCart();
+            calculate();
+            AdapterCart = new AdapterCart(this, arrayItemCart);
+            recyclerView.setAdapter(AdapterCart);
+        }
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_cart, menu);
         return true;
+    }
+
+    public void calculate(){
+        int sum = 0;
+        for(int i=0;i<arrayItemCart.size();i++){
+            sum += arrayItemCart.get(i).getMenuQuantity() * Double.parseDouble(arrayItemCart.get(i).getMenuPrice());
+        }
+        txtTotal.setText(sum+ " Rs");
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -236,10 +249,9 @@ public class ActivityCart extends AppCompatActivity {
 
 
     public void clearData() {
-        Menu_ID.clear();
-        Menu_name.clear();
-        Quantity.clear();
-        Sub_total_price.clear();
+        arrayItemCart.clear();
+        preference.reset();
+        AdapterCart.notifyDataSetChanged();
     }
 
 

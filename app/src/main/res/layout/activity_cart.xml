@@ -6,9 +6,9 @@
 
     <!--<include android:id="@+id/toolbar" android:layout_width="match_parent" android:layout_height="wrap_content" layout="@layout/toolbar" />-->
 
-    <RelativeLayout android:id="@+id/lytOrder" android:visibility="visible" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_below="@+id/toolbar">
+    <RelativeLayout android:id="@+id/lytOrder" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_below="@+id/toolbar">
         <LinearLayout android:orientation="horizontal" android:id="@+id/linearLayout" android:background="@color/colorAccent" android:padding="10dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:weightSum="1.0">
-            <TextView android:textSize="16sp" android:textStyle="bold" android:textColor="@color/white" android:gravity="left" android:id="@+id/txtMenuName" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Name" android:layout_weight="0.5" />
+            <TextView android:textSize="16sp" android:textStyle="bold" android:textColor="@color/white" android:gravity="left" android:id="@+id/txtMenuName" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Item Name" android:layout_weight="0.5" />
             <TextView android:textSize="16sp" android:textStyle="bold" android:textColor="@color/white" android:gravity="left" android:id="@+id/txtQuantity" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Qty" android:layout_weight="0.2" />
             <TextView android:textSize="16sp" android:textStyle="bold" android:textColor="@color/white" android:gravity="left" android:id="@+id/txtPrice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Price" android:layout_weight="0.3" />
         </LinearLayout>
@@ -21,10 +21,10 @@
         </LinearLayout>
         <LinearLayout android:gravity="top|bottom|center_vertical|fill_vertical|center|fill" android:orientation="vertical" android:id="@+id/reservation" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true">
             <com.balysv.materialripple.MaterialRippleLayout android:id="@+id/ripple" android:layout_width="match_parent" android:layout_height="wrap_content" app:mrl_rippleColor="@color/ripple_color" app:mrl_rippleOverlay="true" app:mrl_rippleAlpha="0.2" app:mrl_rippleHover="true" app:mrl_rippleDelayClick="true">
-                <Button android:textStyle="bold" android:textColor="@color/white" android:id="@+id/btn_reservation" android:background="@color/colorPrimary" android:padding="10dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Reservation" />
+                <Button android:textStyle="bold" android:textColor="@color/white" android:id="@+id/btn_reservation" android:background="@color/colorPrimary" android:padding="10dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Checkout" />
             </com.balysv.materialripple.MaterialRippleLayout>
         </LinearLayout>
     </RelativeLayout>
-    <TextView android:textSize="14sp" android:id="@+id/txtAlert" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/no_order" android:layout_centerInParent="true" />
+    <TextView android:textSize="14sp" android:id="@+id/txtAlert" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/no_order" android:layout_centerInParent="true" />
     <ProgressBar android:id="@+id/prgLoading" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true" />
 </RelativeLayout>

@@ -78,7 +78,7 @@
                         custom:textColor="#fff"
                         custom:layout_width="wrap_content"
                         custom:layout_height="wrap_content"
-                        custom:text="@string/app_description"
+                        custom:text="Awsome Food app"
                         custom:shadowColor="@color/shadow"
                         custom:shadowDx="-3.0"
                         custom:shadowDy="-3.0" custom:shadowRadius="4.0" />

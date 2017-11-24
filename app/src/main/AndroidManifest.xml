@@ -31,7 +31,9 @@
         <activity android:name=".Activity.ActivityGalleryDetail" />
         <activity android:name=".Activity.ActivityMenuList" />
         <activity android:name=".Activity.ActivityMenuDetail" />
-        <activity android:name=".Activity.ActivityNewsDetail"></activity>
+        <activity android:name=".Activity.ActivityNewsDetail" />
+        <activity android:name=".Activity.ActivityCheckOut" />
+        <activity android:name=".Activity.ActivityConfirmation"></activity>
     </application>
 
 </manifest>
