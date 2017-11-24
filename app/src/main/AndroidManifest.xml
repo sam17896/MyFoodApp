@@ -28,7 +28,9 @@
         <activity android:name=".Activity.ActivityTabSocial" />
         <activity android:name=".Activity.ActivityTabInformation" />
         <activity android:name=".Activity.ActivityAbout" />
-        <activity android:name=".Activity.ActivityGalleryDetail"></activity>
+        <activity android:name=".Activity.ActivityGalleryDetail" />
+        <activity android:name=".Activity.ActivityMenuList" />
+        <activity android:name=".Activity.ActivityMenuDetail"></activity>
     </application>
 
 </manifest>

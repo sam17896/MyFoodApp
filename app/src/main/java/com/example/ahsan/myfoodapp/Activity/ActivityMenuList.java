@@ -10,14 +10,11 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ItemDecoration;
-import android.support.v7.widget.RecyclerView.LayoutManager;
 import android.support.v7.widget.RecyclerView.OnItemTouchListener;
 import android.support.v7.widget.RecyclerView.State;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
@@ -28,17 +25,17 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.ahsan.myfoodapp.Adapter.AdapterCategory;
-import com.example.ahsan.myfoodapp.Models.ItemCategory;
+import com.example.ahsan.myfoodapp.Adapter.AdapterMenu;
+import com.example.ahsan.myfoodapp.Models.ItemMenu;
 import com.example.ahsan.myfoodapp.R;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityCategory extends AppCompatActivity {
-    AdapterCategory adapterCategory;
-    private List<ItemCategory> arrayItemCategory;
+public class ActivityMenuList extends AppCompatActivity {
+    String Category_ID;
+    String Category_name;
+    AdapterMenu adapterMenu;
+    private List<ItemMenu> arrayItemMenu;
     ProgressBar prgLoading;
     RecyclerView recyclerView;
     SwipeRefreshLayout swipeRefreshLayout = null;
@@ -102,7 +99,7 @@ public class ActivityCategory extends AppCompatActivity {
         }
 
         public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-            View child = ActivityCategory.this.recyclerView.findChildViewUnder(e.getX(), e.getY());
+            View child = ActivityMenuList.this.recyclerView.findChildViewUnder(e.getX(), e.getY());
             if (!(child == null || this.clickListener == null || !this.gestureDetector.onTouchEvent(e))) {
                 this.clickListener.onClick(child, rv.getChildAdapterPosition(child));
             }
@@ -116,41 +113,47 @@ public class ActivityCategory extends AppCompatActivity {
         }
     }
 
-
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_category);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle(R.string.title_menu);
-        }
-        this.swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
+        setContentView(R.layout.activity_menu_list);
+        this.swipeRefreshLayout =  findViewById(R.id.swipeRefreshLayout);
         this.swipeRefreshLayout.setColorSchemeResources(new int[]{R.color.orange, R.color.green, R.color.blue});
         this.prgLoading =  findViewById(R.id.prgLoading);
         this.recyclerView =  findViewById(R.id.recycler_view);
         this.txtAlert =  findViewById(R.id.txtAlert);
-        LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        this.recyclerView.addItemDecoration(new GridSpacingItemDecoration(1, dpToPx(3), true));
-        this.recyclerView.setLayoutManager(mLayoutManager);
+        this.recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
+        this.recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(4), true));
         this.recyclerView.setItemAnimator(new DefaultItemAnimator());
-        arrayItemCategory = new ArrayList<>();
-        arrayItemCategory.add(new ItemCategory("1","Category 1", "https://static.pexels.com/photos/128242/pexels-photo-128242.jpeg"));
-        arrayItemCategory.add(new ItemCategory("2","Category 2", "https://static.pexels.com/photos/533325/pexels-photo-533325.jpeg"));
-        arrayItemCategory.add(new ItemCategory("3","Category 3", "https://static.pexels.com/photos/263173/pexels-photo-263173.jpeg"));
+       Intent iGet = getIntent();
+        this.Category_ID = iGet.getStringExtra("category_id");
+        this.Category_name = iGet.getStringExtra("category_name");
+    if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle(this.Category_name);
+        }
+        arrayItemMenu =  new ArrayList<>();
+        arrayItemMenu.add(new ItemMenu("1","https://static.pexels.com/photos/69056/barbecue-meat-grill-fire-69056.jpeg","Menu1","300","4"));
+        arrayItemMenu.add(new ItemMenu("2","https://static.pexels.com/photos/403932/pexels-photo-403932.jpeg","Menu2","400","2"));
+        arrayItemMenu.add(new ItemMenu("3","https://static.pexels.com/photos/209406/pexels-photo-209406.jpeg","Menu3","500","3"));
 
-        this.adapterCategory = new AdapterCategory(this, this.arrayItemCategory);
-        recyclerView.setAdapter(adapterCategory);
+
+        this.adapterMenu = new AdapterMenu(this, this.arrayItemMenu);
+        recyclerView.setAdapter(adapterMenu);
+//        new getTaxCurrency().execute(new Void[0]);
+
         this.recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), this.recyclerView, new ClickListener() {
             public void onClick(View view, final int position) {
                 new Handler().postDelayed(new Runnable() {
                     public void run() {
-                        Intent intent = new Intent(ActivityCategory.this, ActivityMenuList.class);
-                        ItemCategory itemCategory = arrayItemCategory.get(position);
-                        intent.putExtra("category_id", itemCategory.getCategoryId());
-                        intent.putExtra("category_name", itemCategory.getCategoryName());
-                        intent.putExtra("category_image", itemCategory.getCategoryImage());
-                        ActivityCategory.this.startActivity(intent);
+                        ItemMenu itemMenu = arrayItemMenu.get(position);
+                        Intent intent = new Intent(ActivityMenuList.this, ActivityMenuDetail.class);
+                        intent.putExtra("menu_id", itemMenu.getMenuId());
+                        intent.putExtra("menu_name", itemMenu.getMenuName());
+                        intent.putExtra("menu_image", itemMenu.getMenuImage());
+                        intent.putExtra("menu_price", itemMenu.getMenuPrice());
+                        intent.putExtra("menu_servefor", itemMenu.getServeFor());
+                        ActivityMenuList.this.startActivity(intent);
                     }
                 }, 400);
             }
@@ -162,16 +165,16 @@ public class ActivityCategory extends AppCompatActivity {
             public void onRefresh() {
                 new Handler().postDelayed(new Runnable() {
                     public void run() {
-                        ActivityCategory.this.swipeRefreshLayout.setRefreshing(false);
-      //                  ActivityCategory.this.clearData();
+                        ActivityMenuList.this.swipeRefreshLayout.setRefreshing(false);
                     }
                 }, 3000);
             }
         });
+        prgLoading.setVisibility(View.INVISIBLE);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_category, menu);
+        getMenuInflater().inflate(R.menu.menu_list, menu);
         return true;
     }
 
@@ -187,6 +190,7 @@ public class ActivityCategory extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
 
     protected void onDestroy() {
         this.recyclerView.setAdapter(null);

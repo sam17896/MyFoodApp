@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.balysv.materialripple.MaterialRippleLayout android:id="@+id/ripple" android:layout_width="match_parent" android:layout_height="wrap_content" app:mrl_rippleColor="@color/ripple_color" app:mrl_rippleOverlay="true" app:mrl_rippleAlpha="0.2" app:mrl_rippleHover="true" app:mrl_rippleDelayClick="true">
+        <RelativeLayout android:orientation="vertical" android:id="@+id/relativeLayout" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <com.example.ahsan.myfoodapp.utilities.SquareImageView android:id="@+id/imgThumb" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/ic_loading" android:scaleType="centerCrop" />
+            <RelativeLayout android:gravity="bottom" android:orientation="vertical" android:id="@+id/lytText" android:background="@drawable/ic_transparent" android:padding="5dp" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_alignBottom="@+id/imgThumb">
+                <LinearLayout android:orientation="vertical" android:padding="5dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <TextView android:textSize="16sp" android:textStyle="bold" android:textColor="@color/white" android:id="@+id/txtName" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Menu name" />
+                    <TextView android:textColor="@color/white" android:id="@+id/txtPrice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="$15 USD" />
+                </LinearLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+    </com.balysv.materialripple.MaterialRippleLayout>
+</RelativeLayout>
