@@ -83,5 +83,5 @@
     <color name="text_color">#525252</color>
     <color name="transparent">#00ffffff</color>
     <color name="white">#ffffff</color>
-
+    <color name="bg_row_background">#fa315b</color>
 </resources>

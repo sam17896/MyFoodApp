@@ -33,6 +33,11 @@ public class Preference {
         editor.commit();
     }
 
+    public void descCount(){
+        editor.putInt("COUNT",pref.getInt("COUNT",0)-1);
+        editor.commit();
+    }
+
     public int getCount(){
         return pref.getInt("COUNT",0);
     }
@@ -65,5 +70,20 @@ public class Preference {
     public void reset(){
         editor.putInt("COUNT",0);
         editor.commit();
+    }
+
+    public void restore(int position, ItemCart cart){
+        editor.putString(KEY_PRICE+position,cart.getMenuPrice());
+        editor.putString(KEY_NAMES+position,cart.getMenuName());
+        editor.putInt(KEY_QUANTITY+position,cart.getMenuQuantity());
+        editor.commit();
+    }
+
+    public void delete(int position){
+        editor.putString(KEY_PRICE+position,"");
+        editor.putString(KEY_NAMES+position,"");
+        editor.putInt(KEY_QUANTITY+position,0);
+        editor.commit();
+
     }
 }

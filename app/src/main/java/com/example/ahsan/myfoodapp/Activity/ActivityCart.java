@@ -6,10 +6,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.SQLException;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,6 +21,7 @@ import android.support.v7.widget.RecyclerView.LayoutManager;
 import android.support.v7.widget.RecyclerView.OnItemTouchListener;
 import android.support.v7.widget.RecyclerView.State;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.GestureDetector;
@@ -32,11 +35,13 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ahsan.myfoodapp.Adapter.AdapterCart;
 import com.example.ahsan.myfoodapp.Models.ItemCart;
 import com.example.ahsan.myfoodapp.R;
 import com.example.ahsan.myfoodapp.utilities.Preference;
+import com.example.ahsan.myfoodapp.utilities.RecyclerItemTouchHelper;
 import com.example.ahsan.myfoodapp.utilities.RoundedImageView;
 
 import java.io.BufferedReader;
@@ -52,7 +57,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class ActivityCart extends AppCompatActivity {
+public class ActivityCart extends AppCompatActivity implements RecyclerItemTouchHelper.RecyclerItemTouchHelperListener {
     public static String Currency;
     public static double Tax;
     AdapterCart AdapterCart;
@@ -73,6 +78,8 @@ public class ActivityCart extends AppCompatActivity {
     TextView txtTotal;
     TextView txtTotalLabel;
     Preference preference;
+    boolean cartEmpty;
+    RelativeLayout relativeLayout;
 
     public interface ClickListener {
         void onClick(View view, int i);
@@ -172,7 +179,12 @@ public class ActivityCart extends AppCompatActivity {
         this.recyclerView.addItemDecoration(new GridSpacingItemDecoration(1, dpToPx(3), true));
         this.recyclerView.setLayoutManager(mLayoutManager);
         this.recyclerView.setItemAnimator(new DefaultItemAnimator());
-        this.lytOrder = (RelativeLayout) findViewById(R.id.lytOrder);
+        relativeLayout = findViewById(R.id.relativeLayout1);
+        this.lytOrder = findViewById(R.id.lytOrder);
+        ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT, this);
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
+
+
         //this.TaxCurrencyAPI = Config.ADMIN_PANEL_URL + "/api/get-tax-and-currency.php" + "?accesskey=" + Utils.ACCESS_KEY;
         arrayItemCart = new ArrayList<>();
 //        arrayItemCart.add(new ItemCart("1","Menu1","2","300"));
@@ -198,6 +210,7 @@ public class ActivityCart extends AppCompatActivity {
     public void calculate(){
         int sum = 0;
         for(int i=0;i<arrayItemCart.size();i++){
+            if(!arrayItemCart.get(i).getMenuName().equals(""))
             sum += arrayItemCart.get(i).getMenuQuantity() * Double.parseDouble(arrayItemCart.get(i).getMenuPrice());
         }
         txtTotal.setText(sum+ " Rs");
@@ -209,7 +222,11 @@ public class ActivityCart extends AppCompatActivity {
                 finish();
                 return true;
             case R.id.clear /*2131689751*/:
-                showClearDialog(0, 1111);
+                if(arrayItemCart.size()>0){
+                    showClearDialog(0, 1111);
+                } else {
+                    Toast.makeText(this, "Your Cart is empty", Toast.LENGTH_SHORT).show();
+                }
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -268,4 +285,54 @@ public class ActivityCart extends AppCompatActivity {
     private int dpToPx(int dp) {
         return Math.round(TypedValue.applyDimension(1, (float) dp, getResources().getDisplayMetrics()));
     }
+
+    @Override
+    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
+        if (viewHolder instanceof AdapterCart.ViewHolder) {
+            // get the removed item name to display it in snack bar
+            String name = arrayItemCart.get(viewHolder.getAdapterPosition()).getMenuName();
+
+            // backup of removed item for undo purpose
+            final ItemCart deletedItem = arrayItemCart.get(viewHolder.getAdapterPosition());
+            final int deletedIndex = viewHolder.getAdapterPosition();
+
+            // remove the item from recycler view
+            AdapterCart.removeItem(viewHolder.getAdapterPosition());
+            preference.delete(deletedIndex);
+            preference.descCount();
+//            arrayItemCart.remove(deletedIndex);
+            if(arrayItemCart.size()<1){
+                cartEmpty = true;
+              lytOrder.setVisibility(View.GONE);
+              txtAlert.setVisibility(View.VISIBLE);
+            } else {
+                calculate();
+            }
+            // showing snack bar with Undo option
+            Snackbar snackbar = Snackbar
+                    .make(relativeLayout, name + " removed from cart!", Snackbar.LENGTH_LONG);
+            snackbar.setAction("UNDO", new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    // undo is selected, restore the deleted item
+                    AdapterCart.restoreItem(deletedItem, deletedIndex);
+                    preference.restore(deletedIndex,deletedItem);
+                    preference.incCount();
+                 //   arrayItemCart.add(deletedIndex, deletedItem);
+
+                    if(cartEmpty){
+                        cartEmpty = false;
+                        lytOrder.setVisibility(View.VISIBLE);
+                        txtAlert.setVisibility(View.GONE);
+                    }
+
+                    calculate();
+                }
+            });
+            snackbar.setActionTextColor(Color.YELLOW);
+            snackbar.show();
+        }
+    }
+
 }
