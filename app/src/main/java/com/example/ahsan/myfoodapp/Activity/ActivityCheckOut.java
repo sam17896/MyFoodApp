@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.ahsan.myfoodapp.R;
+import com.example.ahsan.myfoodapp.utilities.Preference;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
@@ -17,6 +18,8 @@ public class ActivityCheckOut extends AppCompatActivity {
 
     EditText EDname,EDphone,EDemail,EDaddress;
     Button btn;
+    Preference preference;
+    String name,phone,email,address;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,13 +28,22 @@ public class ActivityCheckOut extends AppCompatActivity {
         EDphone = findViewById(R.id.edtPhone);
         EDemail = findViewById(R.id.edtEmail);
         EDaddress = findViewById(R.id.edtOrderList);
+
         btn = findViewById(R.id.btnSend);
+        preference = new Preference(this);
+
+        EDname.setText(preference.getKeyName());
+        EDphone.setText(preference.getKeyPhone());
+        EDemail.setText(preference.getKeyEmail());
+        EDaddress.setText(preference.getKeyAddress());
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(validate()){
+                    save();
                     Toast.makeText(ActivityCheckOut.this, "Success", Toast.LENGTH_SHORT).show();
+                    preference.reset();
                     Intent intent =  new Intent(ActivityCheckOut.this,ActivityConfirmation.class);
                     startActivity(intent);
                     finish();
@@ -40,8 +52,15 @@ public class ActivityCheckOut extends AppCompatActivity {
         });
     }
 
+    public void save(){
+        preference.setEmail(email);
+        preference.setName(name);
+        preference.setKeyAddress(address);
+        preference.setPhone(phone);
+    }
+
     public boolean validate(){
-        String name,phone,email,address;
+
         boolean error = false;
         name = EDname.getText().toString().trim();
         phone = EDphone.getText().toString().trim();

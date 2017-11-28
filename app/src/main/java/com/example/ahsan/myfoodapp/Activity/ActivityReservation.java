@@ -30,6 +30,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+
 public class ActivityReservation extends AppCompatActivity {
     public static String Currency = null;
     public static final String DATE_DIALOG_ID = "datePicker";
@@ -108,20 +111,20 @@ public class ActivityReservation extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setTitle(R.string.title_checkout);
         }
-        this.edtName = (EditText) findViewById(R.id.edtName);
-        this.edtNumberOfPeople = (EditText) findViewById(R.id.edtNumberOfPeople);
-        this.edtEmail = (EditText) findViewById(R.id.edtEmail);
-        btnDate = (Button) findViewById(R.id.btnDate);
-        btnTime = (Button) findViewById(R.id.btnTime);
-        this.edtPhone = (EditText) findViewById(R.id.edtPhone);
-        this.edtOrderList = (EditText) findViewById(R.id.edtOrderList);
-        this.edtComment = (EditText) findViewById(R.id.edtComment);
-        this.btnSend = (Button) findViewById(R.id.btnSend);
-        this.sclDetail = (ScrollView) findViewById(R.id.sclDetail);
-        this.progressBar = (ProgressBar) findViewById(R.id.prgLoading);
-        this.txtAlert = (TextView) findViewById(R.id.txtAlert);
-        dateText = (EditText) findViewById(R.id.dateText);
-        timeText = (EditText) findViewById(R.id.timeText);
+        this.edtName =  findViewById(R.id.edtName);
+        this.edtNumberOfPeople =  findViewById(R.id.edtNumberOfPeople);
+        this.edtEmail =  findViewById(R.id.edtEmail);
+        btnDate =  findViewById(R.id.btnDate);
+        btnTime =  findViewById(R.id.btnTime);
+        this.edtPhone =  findViewById(R.id.edtPhone);
+        this.edtOrderList =  findViewById(R.id.edtOrderList);
+        this.edtComment =  findViewById(R.id.edtComment);
+        this.btnSend =  findViewById(R.id.btnSend);
+        this.sclDetail =  findViewById(R.id.sclDetail);
+        this.progressBar =  findViewById(R.id.prgLoading);
+        this.txtAlert =  findViewById(R.id.txtAlert);
+        dateText =  findViewById(R.id.dateText);
+        timeText =  findViewById(R.id.timeText);
         dateText.setText(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()));
         timeText.setText(new SimpleDateFormat("HH:mm:00").format(Calendar.getInstance().getTime()));
 //        this.TaxCurrencyAPI = Config.ADMIN_PANEL_URL + "/api/get-tax-and-currency.php" + "?accesskey=" + Utils.ACCESS_KEY;
@@ -143,25 +146,25 @@ public class ActivityReservation extends AppCompatActivity {
         });
         this.btnSend.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
-                ActivityReservation.this.Name = ActivityReservation.this.edtName.getText().toString();
-                ActivityReservation.this.NumberOfPeople = ActivityReservation.this.edtNumberOfPeople.getText().toString();
-                ActivityReservation.this.Email = ActivityReservation.this.edtEmail.getText().toString();
-                ActivityReservation.this.Date = ActivityReservation.dateText.getText().toString();
-                ActivityReservation.this.Time = ActivityReservation.timeText.getText().toString();
-                ActivityReservation.this.Phone = ActivityReservation.this.edtPhone.getText().toString();
-                ActivityReservation.this.Comment = ActivityReservation.this.edtComment.getText().toString();
-                ActivityReservation.this.Date_Time = ActivityReservation.this.Date + " " + ActivityReservation.this.Time;
-
-
-
+               Name = ActivityReservation.this.edtName.getText().toString();
+               NumberOfPeople = ActivityReservation.this.edtNumberOfPeople.getText().toString();
+               Email = ActivityReservation.this.edtEmail.getText().toString();
+               Date = ActivityReservation.dateText.getText().toString();
+               Time = ActivityReservation.timeText.getText().toString();
+               Phone = ActivityReservation.this.edtPhone.getText().toString();
+               Comment = ActivityReservation.this.edtComment.getText().toString();
+               Date_Time = ActivityReservation.this.Date + " " + ActivityReservation.this.Time;
 
 
                 if (ActivityReservation.this.Name.equalsIgnoreCase(BuildConfig.FLAVOR) || ActivityReservation.this.NumberOfPeople.equalsIgnoreCase(BuildConfig.FLAVOR) || ActivityReservation.this.Email.equalsIgnoreCase(BuildConfig.FLAVOR) || ActivityReservation.this.Date.equalsIgnoreCase(BuildConfig.FLAVOR) || ActivityReservation.this.Time.equalsIgnoreCase(BuildConfig.FLAVOR) || ActivityReservation.this.Phone.equalsIgnoreCase(BuildConfig.FLAVOR)) {
                     Toast.makeText(ActivityReservation.this, R.string.form_alert, Toast.LENGTH_LONG).show();
-                }else {
+                }else if(!validate()) {
+                    //do nothing
                     Intent intent = new Intent(ActivityReservation.this,ActivityReservationConfirmation.class);
                     startActivity(intent);
                     finish();
+                } else {
+                   //do nothing
                 }
             }
         });
@@ -169,6 +172,51 @@ public class ActivityReservation extends AppCompatActivity {
         progressBar.setVisibility(View.INVISIBLE);
         sclDetail.setVisibility(View.VISIBLE);
 
+    }
+
+    boolean validate(){
+        boolean error = false;
+        String regexStr = "^[0-9]{11}$";
+        String namestr = "^[ A-Za-z]+$";
+
+        if(Name.equals("")){
+            error = true;
+            edtName.setError("Field Empty");
+        }
+        if(Phone.equals("")){
+            error = true;
+            edtPhone.setError("Field Empty");
+        }
+        if(Comment.equals("")){
+            error = true;
+            edtComment.setError("Field Empty");
+        }
+        if(Email.equals("")){
+            error = true;
+            edtEmail.setError("Field Empty");
+        }
+
+        if(error){
+            return false;
+        }
+
+        if(!Phone.matches(regexStr)){
+            error = true;
+            edtPhone.setError("Invalid Phone Number");
+        }
+        if(!isValidEmailAddress(Email)){
+            error = true;
+
+            edtEmail.setError("Invalid Email Address");
+        }
+
+        if(!Name.matches(namestr)){
+            error = true;
+            edtName.setError("Invalid Name");
+        }
+
+
+        return error;
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -197,6 +245,17 @@ public class ActivityReservation extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+
+    public static boolean isValidEmailAddress(String email) {
+        boolean result = true;
+        try {
+            InternetAddress emailAddr = new InternetAddress(email);
+            emailAddr.validate();
+        } catch (AddressException ex) {
+            result = false;
+        }
+        return result;
     }
 
     public void onConfigurationChanged(Configuration newConfig) {

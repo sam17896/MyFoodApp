@@ -47,6 +47,7 @@ public class ActivityCategory extends AppCompatActivity {
     SwipeRefreshLayout swipeRefreshLayout = null;
     TextView txtAlert;
     Preference preference;
+    TextView tv;
 
     public interface ClickListener {
         void onClick(View view, int i);
@@ -179,9 +180,18 @@ public class ActivityCategory extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_category, menu);
         MenuItem item = menu.findItem(R.id.cart);
         MenuItemCompat.setActionView(item, R.layout.actionbar_badge_layout);
+
+        item.getActionView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ActivityCategory.this, ActivityCart.class));
+            }
+        });
+
+
         RelativeLayout notifCount = (RelativeLayout) MenuItemCompat.getActionView(item);
 
-        TextView tv = notifCount.findViewById(R.id.actionbar_notifcation_textview);
+        tv = notifCount.findViewById(R.id.actionbar_notifcation_textview);
         tv.setText("" + preference.getCount());
         return true;
 
@@ -203,6 +213,14 @@ public class ActivityCategory extends AppCompatActivity {
     protected void onDestroy() {
         this.recyclerView.setAdapter(null);
         super.onDestroy();
+    }
+
+    @Override
+    protected void onResume() {
+        if(tv != null){
+            tv.setText("" + preference.getCount());
+        }
+        super.onResume();
     }
 
     public void onConfigurationChanged(Configuration newConfig) {

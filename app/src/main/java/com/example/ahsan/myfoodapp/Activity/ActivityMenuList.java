@@ -45,6 +45,7 @@ public class ActivityMenuList extends AppCompatActivity {
     SwipeRefreshLayout swipeRefreshLayout = null;
     TextView txtAlert;
     Preference preference;
+    TextView tv;
 
     public interface ClickListener {
         void onClick(View view, int i);
@@ -193,9 +194,16 @@ public class ActivityMenuList extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_list, menu);
         MenuItem item = menu.findItem(R.id.cart);
+
         MenuItemCompat.setActionView(item, R.layout.actionbar_badge_layout);
+        item.getActionView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ActivityMenuList.this, ActivityCart.class));
+            }
+        });
         RelativeLayout notifCount = (RelativeLayout) MenuItemCompat.getActionView(item);
-        TextView tv = notifCount.findViewById(R.id.actionbar_notifcation_textview);
+        tv = notifCount.findViewById(R.id.actionbar_notifcation_textview);
         tv.setText("" + preference.getCount());
         return true;
     }
@@ -221,6 +229,14 @@ public class ActivityMenuList extends AppCompatActivity {
 
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    protected void onResume() {
+        if(tv != null){
+            tv.setText("" + preference.getCount());
+        }
+        super.onResume();
     }
 
     public void onBackPressed() {

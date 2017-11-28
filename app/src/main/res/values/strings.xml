@@ -83,7 +83,7 @@
     <string name="failed_alert">Your Reservation has not been sent.</string>
     <string name="failed_connect_network">Failed to connect internet!</string>
     <string name="form_alert">Please, complete the form first.</string>
-    <string name="google_map_key">AIzaSyArS1QSHnaJ0FoNq5pkLPc_rdAY_JjVHEg</string>
+    <string name="google_map_key">AIzaSyAATp_4k4DUkd3gCd25FQVHR9zLjd_uncA</string>
     <string name="hint_email_message">Message :</string>
     <string name="hint_email_subject">Subject :</string>
     <string name="information_tab1">Profile</string>
@@ -118,10 +118,10 @@
     <string name="sending_alert">Sending data. Please wait …</string>
     <string name="share_content">I Would like to share this with you. Here You Can Download This Application from PlayStore</string>
     <string name="share_summary">Share to your friends</string>
-    <string name="slider_text1">Lorem ipsum dolor sit amet</string>
-    <string name="slider_text2">Consectetur adipiscing elit.</string>
-    <string name="slider_text3">Portenta haec esse dicit</string>
-    <string name="slider_text4">Neque ea ratione ullo modo posse vivi</string>
+    <string name="slider_text1">Quality Food</string>
+    <string name="slider_text2">Good Taste</string>
+    <string name="slider_text3">Awesome Service</string>
+    <string name="slider_text4">One Restaurant</string>
     <string name="social_tab1">Facebook</string>
     <string name="social_tab2">Twitter</string>
     <string name="success_order">&lt;p&gt;&lt;b&gt;Congratulations,&lt;/b&gt; your Order has been successfully sent..&lt;/p&gt; &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Virtutis, magnitudinis animi, patientiae, fortitudinis fomentis dolor mitigari solet. Eademne, quae restincta siti? Non laboro, inquit, de nomine. Cum ageremus, inquit, vitae beatum et eundem supremum diem, scribebamus haec. Ex rebus enim timiditas, non ex vocabulis nascitur. Duo Reges: constructio interrete.&lt;/p&gt;</string>

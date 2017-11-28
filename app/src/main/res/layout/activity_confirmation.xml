@@ -14,10 +14,21 @@
 
                     <com.balysv.materialripple.MaterialRippleLayout android:id="@+id/rippleTime"
                         android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
                         app:mrl_rippleColor="@color/ripple_color" app:mrl_rippleOverlay="true"
                         app:mrl_rippleAlpha="0.2" app:mrl_rippleHover="true" app:mrl_rippleDelayClick="true">
 
                         <Button android:textColor="@color/white" android:id="@+id/btn" android:background="@color/colorPrimary" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Copy" />
+
+                    </com.balysv.materialripple.MaterialRippleLayout>
+
+                    <com.balysv.materialripple.MaterialRippleLayout android:id="@+id/launchLocation"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        app:mrl_rippleColor="@color/ripple_color" app:mrl_rippleOverlay="true"
+                        app:mrl_rippleAlpha="0.2" app:mrl_rippleHover="true" app:mrl_rippleDelayClick="true">
+
+                        <Button android:textColor="@color/white" android:id="@+id/btnLocation" android:background="@color/colorPrimary" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Track Your Order" />
 
                     </com.balysv.materialripple.MaterialRippleLayout>
                 </LinearLayout>

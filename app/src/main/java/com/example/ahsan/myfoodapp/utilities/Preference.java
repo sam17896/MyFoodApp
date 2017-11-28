@@ -17,6 +17,12 @@ public class Preference {
     private static final String KEY_NAMES = "names";
     private static final String KEY_QUANTITY = "latitude";
     private static final String KEY_PRICE = "longitude";
+
+    private static final String KEY_NAME = "name";
+    private static final String KEY_PHONE = "phone";
+    private static final String KEY_EMAIL = "email";
+    private static final String KEY_ADDRESS = "address";
+
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     Context _context;
@@ -85,5 +91,39 @@ public class Preference {
         editor.putInt(KEY_QUANTITY+position,0);
         editor.commit();
 
+    }
+
+
+    public void setName(String name){
+        editor.putString(KEY_NAME,name);
+        editor.commit();
+    }
+
+    public void setPhone(String name){
+        editor.putString(KEY_PHONE,name);
+        editor.commit();
+    }
+    public void setKeyAddress(String name){
+        editor.putString(KEY_ADDRESS,name);
+        editor.commit();
+    }
+    public void setEmail(String name){
+        editor.putString(KEY_EMAIL,name);
+        editor.commit();
+    }
+    public  String getKeyName() {
+        return pref.getString(KEY_NAME,"");
+    }
+
+    public  String getKeyPhone() {
+        return pref.getString(KEY_PHONE,"");
+    }
+
+    public  String getKeyEmail() {
+        return pref.getString(KEY_EMAIL,"");
+    }
+
+    public  String getKeyAddress() {
+        return pref.getString(KEY_ADDRESS,"");
     }
 }

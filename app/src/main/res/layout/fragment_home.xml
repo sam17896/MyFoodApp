@@ -69,7 +69,7 @@
                         custom:id="@+id/love_music"
                         custom:layout_width="wrap_content"
                         custom:layout_height="wrap_content"
-                        custom:text="@string/app_name"
+                        custom:text="Application Title"
                         custom:shadowColor="@color/shadow"
                         custom:shadowDx="-3.0" custom:shadowDy="-3.0"
                         custom:shadowRadius="4.0" />

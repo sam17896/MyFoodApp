@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ahsan.myfoodapp">
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -34,7 +35,10 @@
         <activity android:name=".Activity.ActivityNewsDetail" />
         <activity android:name=".Activity.ActivityCheckOut" />
         <activity android:name=".Activity.ActivityConfirmation" />
-        <activity android:name=".Activity.ActivityReservationConfirmation"></activity>
+        <activity android:name=".Activity.ActivityReservationConfirmation">
+
+        </activity>
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="@string/google_map_key" />
     </application>
 
 </manifest>

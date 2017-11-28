@@ -39,14 +39,14 @@ public class ActivityReservationConfirmation extends AppCompatActivity {
         this.textView.setText(Html.fromHtml(getResources().getString(R.string.success_order)));
         SecureRandom random = new SecureRandom();
         int num = random.nextInt(100000);
-        String formatted = String.format("%05d", num);
-        pin.setText(formatted);
+        final String formatted = String.format("%05d", num);
+        pin.setText("This is your reservation code " + formatted);
         btn = findViewById(R.id.btn);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText("PIN CODE", pin.getText().toString());
+                ClipData clip = ClipData.newPlainText("PIN CODE", formatted);
                 clipboard.setPrimaryClip(clip);
                 Toast.makeText(ActivityReservationConfirmation.this, "PinCode copied to clipboard", Toast.LENGTH_SHORT).show();
             }

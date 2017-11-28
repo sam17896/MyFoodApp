@@ -270,6 +270,8 @@ public class ActivityCart extends AppCompatActivity implements RecyclerItemTouch
         arrayItemCart.clear();
         preference.reset();
         AdapterCart.notifyDataSetChanged();
+        lytOrder.setVisibility(View.GONE);
+        txtAlert.setVisibility(View.VISIBLE);
     }
 
 

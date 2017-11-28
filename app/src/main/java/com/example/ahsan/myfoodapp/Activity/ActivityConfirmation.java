@@ -1,5 +1,6 @@
 package com.example.ahsan.myfoodapp.Activity;
 
+import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -22,7 +23,7 @@ import java.security.SecureRandom;
 public class ActivityConfirmation extends AppCompatActivity {
 
     private TextView textView,pin;
-    private Button btn;
+    private Button btn,btnLocation;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,16 +40,25 @@ public class ActivityConfirmation extends AppCompatActivity {
         this.textView.setText(Html.fromHtml(getResources().getString(R.string.success_order)));
         SecureRandom random = new SecureRandom();
         int num = random.nextInt(100000);
-        String formatted = String.format("%05d", num);
-        pin.setText(formatted);
+        final String formatted = String.format("%05d", num);
+        pin.setText("Your order will be delivered after 40-45 minutes.. You can track your order with this order number "+formatted);
         btn = findViewById(R.id.btn);
+        btnLocation = findViewById(R.id.btnLocation);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText("PIN CODE", pin.getText().toString());
+                ClipData clip = ClipData.newPlainText("PIN CODE", formatted);
                 clipboard.setPrimaryClip(clip);
                 Toast.makeText(ActivityConfirmation.this, "PinCode copied to clipboard", Toast.LENGTH_SHORT).show();
+            }
+        });
+        btnLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityConfirmation.this, ActivityLocation.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

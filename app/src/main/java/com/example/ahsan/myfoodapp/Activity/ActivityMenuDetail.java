@@ -120,6 +120,13 @@ public class ActivityMenuDetail extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_detail, menu);
         MenuItem item = menu.findItem(R.id.cart);
         MenuItemCompat.setActionView(item, R.layout.actionbar_badge_layout);
+        item.getActionView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ActivityMenuDetail.this, ActivityCart.class));
+            }
+        });
+
         RelativeLayout notifCount = (RelativeLayout) MenuItemCompat.getActionView(item);
 
         tv = notifCount.findViewById(R.id.actionbar_notifcation_textview);
@@ -156,6 +163,14 @@ public class ActivityMenuDetail extends AppCompatActivity {
         finish();
     }
 
+    @Override
+    protected void onResume() {
+        if(tv != null){
+            tv.setText("" + preference.getCount());
+        }
+        super.onResume();
+    }
+
     public void inputDialog() {
             View mView = LayoutInflater.from(this.context).inflate(R.layout.input_dialog, null);
             AlertDialog.Builder alert = new AlertDialog.Builder(this.context);
@@ -172,7 +187,6 @@ public class ActivityMenuDetail extends AppCompatActivity {
                         return;
                     }
                     int quantity = Integer.parseInt(temp);
-                    Toast.makeText(context, temp, Toast.LENGTH_SHORT).show();
                     add(quantity);
                     update();
                 }
