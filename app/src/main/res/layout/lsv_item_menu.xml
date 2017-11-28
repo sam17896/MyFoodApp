@@ -8,8 +8,21 @@
             <com.example.ahsan.myfoodapp.utilities.SquareImageView android:id="@+id/imgThumb" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/ic_loading" android:scaleType="centerCrop" />
             <RelativeLayout android:gravity="bottom" android:orientation="vertical" android:id="@+id/lytText" android:background="@drawable/ic_transparent" android:padding="5dp" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_alignBottom="@+id/imgThumb">
                 <LinearLayout android:orientation="vertical" android:padding="5dp" android:layout_width="match_parent" android:layout_height="wrap_content">
-                    <TextView android:textSize="16sp" android:textStyle="bold" android:textColor="@color/white" android:id="@+id/txtName" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Menu name" />
-                    <TextView android:textColor="@color/white" android:id="@+id/txtPrice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="$15 USD" />
+                    <TextView android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:id="@+id/txtName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Menu name"
+                        android:shadowColor="@color/text_shadow_white"
+                        android:shadowDx="-2"
+                        android:shadowDy="-2"
+                        android:shadowRadius="1"/>
+                    <TextView android:textColor="@color/white" android:shadowColor="@color/text_shadow_white"
+                        android:shadowDx="-2"
+                        android:shadowDy="-2"
+                        android:shadowRadius="1" android:id="@+id/txtPrice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="$15 USD" />
                 </LinearLayout>
             </RelativeLayout>
         </RelativeLayout>

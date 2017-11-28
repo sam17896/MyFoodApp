@@ -6,6 +6,9 @@
 
     <color name="background_color">#f2f2f2</color>
 
+    <color name="text_shadow">#7F000000</color>
+
+    <color name="text_shadow_white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="blue">#21bff3</color>
     <color name="bright_foreground_disabled_material_dark">#80ffffff</color>

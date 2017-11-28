@@ -21,6 +21,7 @@ import android.support.design.widget.AppBarLayout.OnOffsetChangedListener;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.InputFilter;
@@ -35,6 +36,7 @@ import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -72,7 +74,7 @@ public class ActivityMenuDetail extends AppCompatActivity {
     TextView txtPeople;
     TextView txtPrice;
     Preference preference;
-
+    TextView tv;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_detail);
@@ -103,28 +105,8 @@ public class ActivityMenuDetail extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-        this.collapsingToolbarLayout =  findViewById(R.id.collapsing_toolbar);
-        this.collapsingToolbarLayout.setTitle(BuildConfig.FLAVOR);
-        this.appBarLayout =  findViewById(R.id.appbar);
-        this.appBarLayout.setExpanded(true);
-        setup();
-        this.appBarLayout.addOnOffsetChangedListener(new OnOffsetChangedListener() {
-            boolean isShow = false;
-            int scrollRange = -1;
 
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                if (this.scrollRange == -1) {
-                    this.scrollRange = appBarLayout.getTotalScrollRange();
-                }
-                if (this.scrollRange + verticalOffset == 0) {
-                    ActivityMenuDetail.this.collapsingToolbarLayout.setTitle(ActivityMenuDetail.this.Menu_name);
-                    this.isShow = true;
-                } else if (this.isShow) {
-                    ActivityMenuDetail.this.collapsingToolbarLayout.setTitle(BuildConfig.FLAVOR);
-                    this.isShow = false;
-                }
-            }
-        });
+        setup();
     }
 
     public void setup() {
@@ -136,7 +118,17 @@ public class ActivityMenuDetail extends AppCompatActivity {
 
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_detail, menu);
+        MenuItem item = menu.findItem(R.id.cart);
+        MenuItemCompat.setActionView(item, R.layout.actionbar_badge_layout);
+        RelativeLayout notifCount = (RelativeLayout) MenuItemCompat.getActionView(item);
+
+        tv = notifCount.findViewById(R.id.actionbar_notifcation_textview);
+        tv.setText("" + preference.getCount());
         return true;
+    }
+
+    public void update(){
+        tv.setText("" + preference.getCount());
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -168,7 +160,7 @@ public class ActivityMenuDetail extends AppCompatActivity {
             View mView = LayoutInflater.from(this.context).inflate(R.layout.input_dialog, null);
             AlertDialog.Builder alert = new AlertDialog.Builder(this.context);
             alert.setView(mView);
-            final EditText edtQuantity = (EditText) mView.findViewById(R.id.userInputDialog);
+            final EditText edtQuantity =  mView.findViewById(R.id.userInputDialog);
             alert.setCancelable(false);
             edtQuantity.setFilters(new InputFilter[]{new InputFilter.LengthFilter(3)});
             edtQuantity.setInputType(2);
@@ -182,6 +174,7 @@ public class ActivityMenuDetail extends AppCompatActivity {
                     int quantity = Integer.parseInt(temp);
                     Toast.makeText(context, temp, Toast.LENGTH_SHORT).show();
                     add(quantity);
+                    update();
                 }
             });
             alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

@@ -3,6 +3,7 @@ package com.example.ahsan.myfoodapp.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.support.v4.app.DialogFragment;
@@ -150,13 +151,17 @@ public class ActivityReservation extends AppCompatActivity {
                 ActivityReservation.this.Phone = ActivityReservation.this.edtPhone.getText().toString();
                 ActivityReservation.this.Comment = ActivityReservation.this.edtComment.getText().toString();
                 ActivityReservation.this.Date_Time = ActivityReservation.this.Date + " " + ActivityReservation.this.Time;
+
+
+
+
+
                 if (ActivityReservation.this.Name.equalsIgnoreCase(BuildConfig.FLAVOR) || ActivityReservation.this.NumberOfPeople.equalsIgnoreCase(BuildConfig.FLAVOR) || ActivityReservation.this.Email.equalsIgnoreCase(BuildConfig.FLAVOR) || ActivityReservation.this.Date.equalsIgnoreCase(BuildConfig.FLAVOR) || ActivityReservation.this.Time.equalsIgnoreCase(BuildConfig.FLAVOR) || ActivityReservation.this.Phone.equalsIgnoreCase(BuildConfig.FLAVOR)) {
                     Toast.makeText(ActivityReservation.this, R.string.form_alert, Toast.LENGTH_LONG).show();
-                } else if (ActivityReservation.this.data.size() == 0) {
-                    Toast.makeText(ActivityReservation.this, R.string.order_alert, Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(ActivityReservation.this, "Your Registration has been succesfull", Toast.LENGTH_SHORT).show();
-//                        new sendData().execute(new Void[0]);
+                }else {
+                    Intent intent = new Intent(ActivityReservation.this,ActivityReservationConfirmation.class);
+                    startActivity(intent);
+                    finish();
                 }
             }
         });

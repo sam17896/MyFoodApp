@@ -49,7 +49,7 @@ public class ActivityCheckOut extends AppCompatActivity {
         address = EDaddress.getText().toString().trim();
 
         String regexStr = "^[0-9]{11}$";
-        String namestr = "/^[A-Za-z\\s]+$/";
+        String namestr = "^[ A-Za-z]+$";
 
         if(name.equals("")){
             error = true;
@@ -87,10 +87,10 @@ public class ActivityCheckOut extends AppCompatActivity {
             EDaddress.setError("Invalid Address");
         }
 
-//        if(!name.matches(namestr)){
-//            error = true;
-//            EDname.setError("Invalid Name");
-//        }
+        if(!name.matches(namestr)){
+            error = true;
+            EDname.setError("Invalid Name");
+        }
 
         return !error;
     }

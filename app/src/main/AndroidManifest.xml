@@ -33,7 +33,8 @@
         <activity android:name=".Activity.ActivityMenuDetail" />
         <activity android:name=".Activity.ActivityNewsDetail" />
         <activity android:name=".Activity.ActivityCheckOut" />
-        <activity android:name=".Activity.ActivityConfirmation"></activity>
+        <activity android:name=".Activity.ActivityConfirmation" />
+        <activity android:name=".Activity.ActivityReservationConfirmation"></activity>
     </application>
 
 </manifest>

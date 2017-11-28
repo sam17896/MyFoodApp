@@ -6,6 +6,7 @@ import android.content.res.Configuration;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.support.v7.app.AppCompatActivity;
@@ -23,11 +24,14 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.ahsan.myfoodapp.Adapter.AdapterMenu;
 import com.example.ahsan.myfoodapp.Models.ItemMenu;
 import com.example.ahsan.myfoodapp.R;
+import com.example.ahsan.myfoodapp.utilities.Preference;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +44,7 @@ public class ActivityMenuList extends AppCompatActivity {
     RecyclerView recyclerView;
     SwipeRefreshLayout swipeRefreshLayout = null;
     TextView txtAlert;
+    Preference preference;
 
     public interface ClickListener {
         void onClick(View view, int i);
@@ -116,6 +121,7 @@ public class ActivityMenuList extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_list);
+        preference = new Preference(this);
         this.swipeRefreshLayout =  findViewById(R.id.swipeRefreshLayout);
         this.swipeRefreshLayout.setColorSchemeResources(new int[]{R.color.orange, R.color.green, R.color.blue});
         this.prgLoading =  findViewById(R.id.prgLoading);
@@ -186,6 +192,11 @@ public class ActivityMenuList extends AppCompatActivity {
 
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_list, menu);
+        MenuItem item = menu.findItem(R.id.cart);
+        MenuItemCompat.setActionView(item, R.layout.actionbar_badge_layout);
+        RelativeLayout notifCount = (RelativeLayout) MenuItemCompat.getActionView(item);
+        TextView tv = notifCount.findViewById(R.id.actionbar_notifcation_textview);
+        tv.setText("" + preference.getCount());
         return true;
     }
 

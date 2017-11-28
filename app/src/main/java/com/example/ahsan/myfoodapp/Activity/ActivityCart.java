@@ -249,6 +249,7 @@ public class ActivityCart extends AppCompatActivity implements RecyclerItemTouch
                 switch (ActivityCart.this.FLAG) {
                     case RoundedImageView.DEFAULT_RADIUS /*0*/:
                         ActivityCart.this.clearData();
+                        calculate();
                         return;
                     default:
                         return;
