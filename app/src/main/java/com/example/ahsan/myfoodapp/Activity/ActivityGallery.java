@@ -131,7 +131,7 @@ public class ActivityGallery extends AppCompatActivity {
 
     public void setAdapterToRecyclerView() {
         arrayItemGallery.add(new ItemGallery("1","1","Best Biryani in town",R.drawable.rice2,"Biryani"));
-        arrayItemGallery.add(new ItemGallery("2","2","Best Chinese Rice in town",R.drawable.rice2,"Chinese Rice"));
+        arrayItemGallery.add(new ItemGallery("2","2","Best Chinese Rice in town",R.drawable.rice3,"Chinese Rice"));
         arrayItemGallery.add(new ItemGallery("3","3","Best Dal Chawal in town",R.drawable.rice1,"Dal Chawal"));
         arrayItemGallery.add(new ItemGallery("4","4","Best Grilled Chicken in town",R.drawable.bbq1,"Grilled Chicken"));
         arrayItemGallery.add(new ItemGallery("5","5","Best Seekh Boti in town",R.drawable.bbq2,"Seekh Boti"));

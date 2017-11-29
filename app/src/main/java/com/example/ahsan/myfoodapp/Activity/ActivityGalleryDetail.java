@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.ahsan.myfoodapp.Models.ItemGallery;
 import com.example.ahsan.myfoodapp.R;
 import com.squareup.picasso.Callback;
@@ -41,7 +42,7 @@ public class ActivityGalleryDetail extends AppCompatActivity {
     String str_cat_name;
     String str_cid;
     String str_desc;
-    String str_image;
+    int str_image;
     String str_name;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +63,7 @@ public class ActivityGalleryDetail extends AppCompatActivity {
         this.str_cid = i.getStringExtra("CID");
         this.str_cat_id = i.getStringExtra("catId");
         this.str_name = i.getStringExtra("name");
-        this.str_image = i.getStringExtra("url");
+        this.str_image = i.getIntExtra("url",-1);
         this.str_desc = i.getStringExtra("desc");
         progressBar.setVisibility(View.INVISIBLE);
         setAdapterToRecyclerView();
@@ -71,7 +72,7 @@ public class ActivityGalleryDetail extends AppCompatActivity {
     public void setAdapterToRecyclerView() {
         this.gallery_name.setText(this.str_name);
         this.gallery_description.setText(this.str_desc);
-        Picasso.with(this).load(str_image).placeholder((int) R.drawable.ic_loading).into(this.gallery_image);
+        Glide.with(this).load(str_image).into(this.gallery_image);
 
     }
 

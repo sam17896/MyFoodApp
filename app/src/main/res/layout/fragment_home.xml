@@ -58,8 +58,9 @@
                     style="@style/AndroidImageSlider_Corner_Oval_Orange" />
 
                 <LinearLayout
-                    custom:gravity="left|right|center_horizontal|fill_horizontal|center|fill|start|end"
-                    custom:orientation="vertical" custom:layout_width="wrap_content"
+                    custom:gravity="center"
+                    custom:orientation="vertical" custom:layout_width="match_parent"
+                    custom:background="#50000000"
                     custom:layout_height="wrap_content" custom:layout_centerInParent="true">
 
                     <TextView
@@ -78,7 +79,7 @@
                         custom:textColor="#fff"
                         custom:layout_width="wrap_content"
                         custom:layout_height="wrap_content"
-                        custom:text="Awsome Food app"
+                        custom:text="Awesome Food app"
                         custom:shadowColor="@color/shadow"
                         custom:shadowDx="-3.0"
                         custom:shadowDy="-3.0" custom:shadowRadius="4.0" />
