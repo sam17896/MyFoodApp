@@ -36,9 +36,9 @@ public class AdapterHome extends Adapter<AdapterHome.ViewHolder> {
 
         public ViewHolder(View view) {
             super(view);
-            this.title = (TextView) view.findViewById(R.id.title);
-            this.thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
-            this.linearLayout = (LinearLayout) view.findViewById(R.id.linearLayout);
+            this.title =  view.findViewById(R.id.title);
+            this.thumbnail =  view.findViewById(R.id.thumbnail);
+            this.linearLayout =  view.findViewById(R.id.linearLayout);
         }
     }
 
