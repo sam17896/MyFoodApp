@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.example.ahsan.myfoodapp.BuildConfig;
 import com.example.ahsan.myfoodapp.R;
+import com.example.ahsan.myfoodapp.utilities.Preference;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -70,6 +71,7 @@ public class ActivityReservation extends AppCompatActivity {
     ProgressBar progressBar;
     ScrollView sclDetail;
     TextView txtAlert;
+    Preference preference;
 
     public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
         public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -111,6 +113,7 @@ public class ActivityReservation extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setTitle(R.string.title_checkout);
         }
+        preference = new Preference(this);
         this.edtName =  findViewById(R.id.edtName);
         this.edtNumberOfPeople =  findViewById(R.id.edtNumberOfPeople);
         this.edtEmail =  findViewById(R.id.edtEmail);
@@ -123,6 +126,9 @@ public class ActivityReservation extends AppCompatActivity {
         this.sclDetail =  findViewById(R.id.sclDetail);
         this.progressBar =  findViewById(R.id.prgLoading);
         this.txtAlert =  findViewById(R.id.txtAlert);
+        edtName.setText(preference.getKeyName());
+        edtEmail.setText(preference.getKeyEmail());
+        edtPhone.setText(preference.getKeyPhone());
         dateText =  findViewById(R.id.dateText);
         timeText =  findViewById(R.id.timeText);
         dateText.setText(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()));
@@ -160,6 +166,7 @@ public class ActivityReservation extends AppCompatActivity {
                     Toast.makeText(ActivityReservation.this, R.string.form_alert, Toast.LENGTH_LONG).show();
                 }else if(!validate()) {
                     //do nothing
+                    update();
                     Intent intent = new Intent(ActivityReservation.this,ActivityReservationConfirmation.class);
                     startActivity(intent);
                     finish();
@@ -172,6 +179,12 @@ public class ActivityReservation extends AppCompatActivity {
         progressBar.setVisibility(View.INVISIBLE);
         sclDetail.setVisibility(View.VISIBLE);
 
+    }
+
+    void update(){
+        preference.setName(Name);
+        preference.setEmail(Email);
+        preference.setPhone(Phone);
     }
 
     boolean validate(){

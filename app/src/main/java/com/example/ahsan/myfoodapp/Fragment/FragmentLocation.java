@@ -28,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ahsan.myfoodapp.R;
+import com.example.ahsan.myfoodapp.utilities.Preference;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -45,6 +46,7 @@ public class FragmentLocation extends Fragment implements Permission {
     private FloatingActionButton floatingActionButton;
     private GoogleMap googleMap;
     Double latitude;
+    Preference preference;
     private LocationListener listener = new LocationListener() {
         public void onStatusChanged(String provider, int status, Bundle extras) {
         }
@@ -74,14 +76,17 @@ public class FragmentLocation extends Fragment implements Permission {
         super.onCreateView(inflater, container, savedInstanceState);
         this.relativeLayout = (RelativeLayout) inflater.inflate(R.layout.fragment_location, container, false);
         setHasOptionsMenu(true);
+        preference = new Preference(getActivity());
         this.mapView =  this.relativeLayout.findViewById(R.id.map);
         this.mapView.onCreate(savedInstanceState);
         this.mapView.onResume();
         textView = relativeLayout.findViewById(R.id.edtName);
+        textView.setText(preference.getPin());
         this.floatingActionButton = this.relativeLayout.findViewById(R.id.navigate);
         this.floatingActionButton.setOnClickListener(new OnClickListener() {
             public void onClick(View view) {
                 if(textView.getText().toString().length()==5){
+                    preference.setPin("");
                     mapView.setVisibility(View.VISIBLE);
                 } else {
                     Toast.makeText(activity, "Invalid Code", Toast.LENGTH_SHORT).show();

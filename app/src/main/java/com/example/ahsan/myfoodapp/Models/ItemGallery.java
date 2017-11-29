@@ -4,10 +4,10 @@ public class ItemGallery {
     private String CId;
     private String CatId;
     private String GalleryDescription;
-    private String GalleryImage;
+    private int GalleryImage;
     private String GalleryName;
 
-    public ItemGallery(String CId, String catId, String galleryDescription, String galleryImage, String galleryName) {
+    public ItemGallery(String CId, String catId, String galleryDescription, int galleryImage, String galleryName) {
         this.CId = CId;
         CatId = catId;
         GalleryDescription = galleryDescription;
@@ -48,11 +48,11 @@ public class ItemGallery {
         this.GalleryDescription = newsdescription;
     }
 
-    public String getGalleryImage() {
+    public int getGalleryImage() {
         return this.GalleryImage;
     }
 
-    public void setGalleryImage(String newsimage) {
+    public void setGalleryImage(int newsimage) {
         this.GalleryImage = newsimage;
     }
 }

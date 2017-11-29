@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ahsan.myfoodapp.R;
+import com.example.ahsan.myfoodapp.utilities.Preference;
 
 import java.security.SecureRandom;
 
@@ -24,12 +25,14 @@ public class ActivityConfirmation extends AppCompatActivity {
 
     private TextView textView,pin;
     private Button btn,btnLocation;
+    private Preference preference;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmation);
         Log.d("Log", "Working in Normal Mode, RTL Mode is Disabled");
-//        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        preference = new Preference(this);
+//       setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -41,6 +44,7 @@ public class ActivityConfirmation extends AppCompatActivity {
         SecureRandom random = new SecureRandom();
         int num = random.nextInt(100000);
         final String formatted = String.format("%05d", num);
+        preference.setPin(formatted);
         pin.setText("Your order will be delivered after 40-45 minutes.. You can track your order with this order number "+formatted);
         btn = findViewById(R.id.btn);
         btnLocation = findViewById(R.id.btnLocation);

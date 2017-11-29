@@ -130,10 +130,15 @@ public class ActivityGallery extends AppCompatActivity {
 
 
     public void setAdapterToRecyclerView() {
-        arrayItemGallery.add(new ItemGallery("1","1","Food1 DESC","https://static.pexels.com/photos/76093/pexels-photo-76093.jpeg","Food1"));
-        arrayItemGallery.add(new ItemGallery("2","2","Food2 DESC","https://static.pexels.com/photos/70497/pexels-photo-70497.jpeg","Food1"));
-        arrayItemGallery.add(new ItemGallery("3","3","Food3 DESC","https://static.pexels.com/photos/376464/pexels-photo-376464.jpeg","Food1"));
-        arrayItemGallery.add(new ItemGallery("4","4","Food3 DESC","https://static.pexels.com/photos/5938/food-salad-healthy-lunch.jpg","Food1"));
+        arrayItemGallery.add(new ItemGallery("1","1","Best Biryani in town",R.drawable.rice2,"Biryani"));
+        arrayItemGallery.add(new ItemGallery("2","2","Best Chinese Rice in town",R.drawable.rice2,"Chinese Rice"));
+        arrayItemGallery.add(new ItemGallery("3","3","Best Dal Chawal in town",R.drawable.rice1,"Dal Chawal"));
+        arrayItemGallery.add(new ItemGallery("4","4","Best Grilled Chicken in town",R.drawable.bbq1,"Grilled Chicken"));
+        arrayItemGallery.add(new ItemGallery("5","5","Best Seekh Boti in town",R.drawable.bbq2,"Seekh Boti"));
+        arrayItemGallery.add(new ItemGallery("6","6","Best Chicken Tikka in town",R.drawable.bbq3,"Chicken Tikka"));
+        arrayItemGallery.add(new ItemGallery("7","7","Best Coffee in town",R.drawable.beverage1,"Coffee"));
+        arrayItemGallery.add(new ItemGallery("8","8","Best Lemon Juice in town",R.drawable.beverage3,"Lemon Juice"));
+        arrayItemGallery.add(new ItemGallery("9","9","Best Tea in town",R.drawable.beverage2,"Tea"));
 
         this.AdapterGalleryRecent = new AdapterGallery(this, this.arrayItemGallery);
         this.recyclerView.setAdapter(this.AdapterGalleryRecent);

@@ -22,6 +22,7 @@ public class Preference {
     private static final String KEY_PHONE = "phone";
     private static final String KEY_EMAIL = "email";
     private static final String KEY_ADDRESS = "address";
+    private static final String KEY_PIN = "pin";
 
     SharedPreferences pref;
     SharedPreferences.Editor editor;
@@ -111,6 +112,16 @@ public class Preference {
         editor.putString(KEY_EMAIL,name);
         editor.commit();
     }
+
+    public void setPin(String pin){
+        editor.putString(KEY_PIN,pin);
+        editor.commit();
+    }
+
+    public String getPin(){
+        return pref.getString(KEY_PIN,"");
+    }
+
     public  String getKeyName() {
         return pref.getString(KEY_NAME,"");
     }

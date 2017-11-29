@@ -81,12 +81,12 @@ public class FragmentHome extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        this.toolbar = (Toolbar) view.findViewById(R.id.toolbar);
-        this.mDemoSlider = (SliderLayout) view.findViewById(R.id.slider);
+        this.toolbar = view.findViewById(R.id.toolbar);
+        this.mDemoSlider = view.findViewById(R.id.slider);
         setupToolbar();
-        this.collapsingToolbarLayout = (CollapsingToolbarLayout) view.findViewById(R.id.collapsing_toolbar);
+        this.collapsingToolbarLayout = view.findViewById(R.id.collapsing_toolbar);
         this.collapsingToolbarLayout.setTitle(" ");
-        this.appBarLayout = (AppBarLayout) view.findViewById(R.id.appbar_layout);
+        this.appBarLayout =  view.findViewById(R.id.appbar_layout);
         this.appBarLayout.setExpanded(true);
         this.appBarLayout.addOnOffsetChangedListener(new OnOffsetChangedListener() {
             boolean isShow = false;
