@@ -73,6 +73,30 @@
 
                     </LinearLayout>
 
+                        <LinearLayout
+                            android:gravity="right"
+                            android:id="@+id/drinkBtn"
+                            android:visibility="gone"
+                            android:orientation="horizontal" android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:layout_marginLeft="24dp" android:layout_marginStart="24dp"
+                            android:layout_marginRight="10dp" android:layout_marginEnd="10dp">
+
+                            <com.balysv.materialripple.MaterialRippleLayout
+                                android:id="@+id/ripple" android:layout_width="match_parent"
+                                android:layout_height="wrap_content" app:mrl_rippleColor="@color/ripple_color"
+                                app:mrl_rippleOverlay="true" app:mrl_rippleAlpha="0.2" app:mrl_rippleHover="true" app:mrl_rippleDelayClick="true">
+
+                                <Button android:textStyle="bold" android:textColor="@color/white"
+                                    android:id="@+id/btnSend" android:background="@color/colorPrimary"
+                                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                                    android:text="Change" />
+
+
+                            </com.balysv.materialripple.MaterialRippleLayout>
+
+
+                        </LinearLayout>
+
 
 
                 </LinearLayout>

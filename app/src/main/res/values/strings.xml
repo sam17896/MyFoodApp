@@ -148,4 +148,13 @@
     <string name="twitter_url">https://twitter.com/solodroiddev</string>
     <string name="zoom_level">12</string>
     <string name="delete">DELETE</string>
+    <string name="country_prompt">Choose a country</string>
+
+    <string-array name="country_arrays">
+        <item>Karachi</item>
+        <item>Hyderabad</item>
+        <item>Lahore</item>
+        <item>Quetta</item>
+        <item>Peshawar</item>
+    </string-array>
 </resources>

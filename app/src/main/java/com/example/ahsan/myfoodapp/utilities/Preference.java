@@ -94,6 +94,15 @@ public class Preference {
 
     }
 
+    public void setPos(int pos){
+        editor.putInt("POS",pos);
+        editor.commit();
+    }
+
+    public int getPos(){
+        return pref.getInt("POS",0);
+    }
+
 
     public void setName(String name){
         editor.putString(KEY_NAME,name);

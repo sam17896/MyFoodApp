@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.ahsan.myfoodapp.R;
+import com.example.ahsan.myfoodapp.utilities.CustomOnItemSelectedListener;
 import com.example.ahsan.myfoodapp.utilities.Preference;
 
 import javax.mail.internet.AddressException;
@@ -19,6 +21,7 @@ public class ActivityCheckOut extends AppCompatActivity {
     EditText EDname,EDphone,EDemail,EDaddress;
     Button btn;
     Preference preference;
+    Spinner spinner1;
     String name,phone,email,address;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +31,8 @@ public class ActivityCheckOut extends AppCompatActivity {
         EDphone = findViewById(R.id.edtPhone);
         EDemail = findViewById(R.id.edtEmail);
         EDaddress = findViewById(R.id.edtOrderList);
-
+        spinner1 = findViewById(R.id.spinner1);
+        spinner1.setOnItemSelectedListener(new CustomOnItemSelectedListener());
         btn = findViewById(R.id.btnSend);
         preference = new Preference(this);
 
@@ -36,6 +40,7 @@ public class ActivityCheckOut extends AppCompatActivity {
         EDphone.setText(preference.getKeyPhone());
         EDemail.setText(preference.getKeyEmail());
         EDaddress.setText(preference.getKeyAddress());
+        spinner1.setSelection(preference.getPos());
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override

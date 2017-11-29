@@ -141,18 +141,19 @@ public class ActivityMenuList extends AppCompatActivity {
         }
         arrayItemMenu =  new ArrayList<>();
         if(Category_ID.equals("3")){
-            arrayItemMenu.add(new ItemMenu("1",R.drawable.rice2,"Biryani","500","2"));
-            arrayItemMenu.add(new ItemMenu("2",R.drawable.rice3,"Chinese Rice","400","2"));
-            arrayItemMenu.add(new ItemMenu("3",R.drawable.rice1,"Dal Chawal","300","2"));
+            arrayItemMenu.add(new ItemMenu("1",R.drawable.rice2,"Biryani","500","2",false));
+            arrayItemMenu.add(new ItemMenu("2",R.drawable.rice3,"Chinese Rice","400","2",false));
+            arrayItemMenu.add(new ItemMenu("3",R.drawable.rice1,"Dal Chawal","300","2",false));
 
         } else if(Category_ID.equals("2")){
-            arrayItemMenu.add(new ItemMenu("4",R.drawable.bbq1,"Grilled Chicken","300","4"));
-            arrayItemMenu.add(new ItemMenu("5",R.drawable.bbq2,"Seekh Boti","400","2"));
-            arrayItemMenu.add(new ItemMenu("6",R.drawable.bbq3,"Chicken Tikka","500","3"));
+            arrayItemMenu.add(new ItemMenu("4",R.drawable.bbq1,"Grilled Chicken","300","4",false));
+            arrayItemMenu.add(new ItemMenu("5",R.drawable.bbq2,"Seekh Boti","400","2",false));
+            arrayItemMenu.add(new ItemMenu("6",R.drawable.bbq3,"Chicken Tikka","500","3",false));
         } else if(Category_ID.equals("1")){
-            arrayItemMenu.add(new ItemMenu("7",R.drawable.beverage1,"Coffee","100","1"));
-            arrayItemMenu.add(new ItemMenu("8",R.drawable.beverage3,"Lemon Juice","80","1"));
-            arrayItemMenu.add(new ItemMenu("9",R.drawable.beverage2,"Tea","80","1"));
+            arrayItemMenu.add(new ItemMenu("7",R.drawable.beverage1,"Coffee","100","1",false));
+            arrayItemMenu.add(new ItemMenu("8",R.drawable.beverage3,"Lemon Juice","80","1",false));
+            arrayItemMenu.add(new ItemMenu("9",R.drawable.beverage2,"Tea","80","1",false));
+            arrayItemMenu.add(new ItemMenu("9",R.drawable.beverage4,"Cold Drink","30","1",true));
 
         }
 
@@ -171,6 +172,7 @@ public class ActivityMenuList extends AppCompatActivity {
                         intent.putExtra("menu_image", itemMenu.getMenuImage());
                         intent.putExtra("menu_price", itemMenu.getMenuPrice());
                         intent.putExtra("menu_servefor", itemMenu.getServeFor());
+                        intent.putExtra("isDrink",itemMenu.isDrink());
                         ActivityMenuList.this.startActivity(intent);
                     }
                 }, 400);

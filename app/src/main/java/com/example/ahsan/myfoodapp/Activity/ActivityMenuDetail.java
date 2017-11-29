@@ -33,8 +33,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -54,7 +56,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class ActivityMenuDetail extends AppCompatActivity {
+public class ActivityMenuDetail extends AppCompatActivity implements View.OnClickListener {
 
     String Menu_ID;
     String Menu_description;
@@ -74,7 +76,11 @@ public class ActivityMenuDetail extends AppCompatActivity {
     TextView txtPeople;
     TextView txtPrice;
     Preference preference;
+    LinearLayout ly;
     TextView tv;
+    Button btn;
+    boolean isDrink;
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_detail);
@@ -87,6 +93,7 @@ public class ActivityMenuDetail extends AppCompatActivity {
         this.coordinatorLayout =  findViewById(R.id.main_content);
         this.progressBar =  findViewById(R.id.prgLoading);
         this.txtAlert =  findViewById(R.id.txtAlert);
+        ly = findViewById(R.id.drinkBtn);
         preference = new Preference(this);
         (findViewById(R.id.btnAdd)).setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
@@ -100,7 +107,14 @@ public class ActivityMenuDetail extends AppCompatActivity {
         Glide.with(imageView.getContext()).load(Menu_image).into(imageView);
         Menu_price = iGet.getStringExtra("menu_price");
         serve_for = iGet.getStringExtra("menu_servefor");
+        isDrink = iGet.getBooleanExtra("isDrink",false);
+        if(isDrink){
+            ly.setVisibility(View.VISIBLE);
+            btn = findViewById(R.id.btnSend);
+            btn.setOnClickListener(this);
+        }
         Menu_description = Menu_name + " serves for " + serve_for + " people for only " + Menu_price + " Rs";
+
       if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -113,7 +127,10 @@ public class ActivityMenuDetail extends AppCompatActivity {
         ActivityMenuDetail.this.txtName.setText(ActivityMenuDetail.this.Menu_name);
         ActivityMenuDetail.this.txtPrice.setText(Menu_price + " Rs");
         ActivityMenuDetail.this.txtPeople.setText(serve_for + " People");
-        txtDescription.setText(Menu_name + " serves for " + serve_for + " For only " + Menu_price +" Rs");
+        if(!isDrink)
+            txtDescription.setText(Menu_name + " serves for " + serve_for + " For only " + Menu_price +" Rs");
+        else
+            txtDescription.setText(Menu_name + " Pepsi serves for " + serve_for + " For only " + Menu_price +" Rs");
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -212,5 +229,41 @@ public class ActivityMenuDetail extends AppCompatActivity {
 
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id  = v.getId();
+        switch (id){
+            case R.id.btnSend:
+                CharSequence items[] = new CharSequence[] {"Pepsi", "Marinda", "7up","Cococola"};
+                AlertDialog.Builder builder = new AlertDialog.Builder(ActivityMenuDetail.this);
+                builder.setTitle("Select Option");
+                builder.setItems(items, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.e("value is", "" + which);
+                        switch (which) {
+                            case 0:
+                                txtDescription.setText(Menu_name + " Pepsi serves for " + serve_for + " For only " + Menu_price +" Rs");
+                                break;
+                            case 1:
+                                txtDescription.setText(Menu_name + " Marinda serves for " + serve_for + " For only " + Menu_price +" Rs");
+
+                                break;
+                            case 2:
+                                txtDescription.setText(Menu_name + " 7up serves for " + serve_for + " For only " + Menu_price +" Rs");
+
+                                break;
+                            case 3:
+                                txtDescription.setText(Menu_name + " Cococola serves for " + serve_for + " For only " + Menu_price +" Rs");
+
+                                break;
+                        }
+                    }
+                });
+                builder.show();
+                break;
+        }
     }
 }

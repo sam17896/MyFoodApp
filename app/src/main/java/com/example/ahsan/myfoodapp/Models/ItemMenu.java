@@ -6,13 +6,23 @@ public class ItemMenu {
     private String MenuName;
     private String MenuPrice;
     private String ServeFor;
+    private boolean isDrink;
 
-    public ItemMenu(String menuId, int menuImage, String menuName, String menuPrice,String ServeFor) {
+    public ItemMenu(String menuId, int menuImage, String menuName, String menuPrice,String ServeFor, boolean isDrink) {
         this.MenuId = menuId;
         this.MenuImage = menuImage;
         this.MenuName = menuName;
         this.MenuPrice = menuPrice;
         this.ServeFor = ServeFor;
+        this.isDrink = isDrink;
+    }
+
+    public boolean isDrink() {
+        return isDrink;
+    }
+
+    public void setDrink(boolean drink) {
+        isDrink = drink;
     }
 
     public String getServeFor() {
