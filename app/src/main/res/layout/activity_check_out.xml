@@ -83,7 +83,7 @@
                     <Button android:textStyle="bold" android:textColor="@color/white"
                         android:id="@+id/btnSend" android:background="@color/colorPrimary"
                         android:layout_width="match_parent" android:layout_height="wrap_content"
-                        android:text="@string/checkout_send_order" />
+                        android:text="Confirm Order" />
 
 
                 </com.balysv.materialripple.MaterialRippleLayout>

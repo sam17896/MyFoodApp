@@ -19,12 +19,14 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.ahsan.myfoodapp.BuildConfig;
 import com.example.ahsan.myfoodapp.R;
+import com.example.ahsan.myfoodapp.utilities.CustomOnItemSelectedListener;
 import com.example.ahsan.myfoodapp.utilities.Preference;
 
 import java.text.SimpleDateFormat;
@@ -71,6 +73,7 @@ public class ActivityReservation extends AppCompatActivity {
     ProgressBar progressBar;
     ScrollView sclDetail;
     TextView txtAlert;
+    Spinner spinner1;
     Preference preference;
 
     public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
@@ -126,9 +129,12 @@ public class ActivityReservation extends AppCompatActivity {
         this.sclDetail =  findViewById(R.id.sclDetail);
         this.progressBar =  findViewById(R.id.prgLoading);
         this.txtAlert =  findViewById(R.id.txtAlert);
+        spinner1 = findViewById(R.id.spinner1);
+        spinner1.setOnItemSelectedListener(new CustomOnItemSelectedListener());
         edtName.setText(preference.getKeyName());
         edtEmail.setText(preference.getKeyEmail());
         edtPhone.setText(preference.getKeyPhone());
+        spinner1.setSelection(preference.getPos());
         dateText =  findViewById(R.id.dateText);
         timeText =  findViewById(R.id.timeText);
         dateText.setText(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()));
@@ -200,17 +206,13 @@ public class ActivityReservation extends AppCompatActivity {
             error = true;
             edtPhone.setError("Field Empty");
         }
-        if(Comment.equals("")){
-            error = true;
-            edtComment.setError("Field Empty");
-        }
         if(Email.equals("")){
             error = true;
             edtEmail.setError("Field Empty");
         }
 
         if(error){
-            return false;
+            return error;
         }
 
         if(!Phone.matches(regexStr)){

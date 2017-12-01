@@ -94,6 +94,9 @@ public class MainActivity extends AppCompatActivity
             case R.id.drawer_location /*2131689760*/:
                 startActivity(new Intent(getApplicationContext(), ActivityLocation.class));
                 return true;
+            case R.id.drawer_feedback /*2131689760*/:
+                startActivity(new Intent(getApplicationContext(), ActivityFeedback.class));
+                return true;
             default:
                 return false;
         }

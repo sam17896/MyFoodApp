@@ -8,5 +8,7 @@
         <item android:icon="@drawable/ic_drawer_gallery" android:id="@+id/drawer_gallery" android:title="@string/menu_gallery" />
         <item android:icon="@drawable/ic_drawer_news" android:id="@+id/drawer_news" android:title="@string/menu_news" />
         <item android:icon="@drawable/ic_drawer_location" android:id="@+id/drawer_location" android:title="@string/menu_location" />
+        <item android:icon="@drawable/ic_feedback" android:id="@+id/drawer_feedback" android:title="Feedback" />
+
     </group>
 </menu>

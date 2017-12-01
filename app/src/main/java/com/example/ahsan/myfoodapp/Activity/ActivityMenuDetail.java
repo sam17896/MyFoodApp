@@ -103,6 +103,7 @@ public class ActivityMenuDetail extends AppCompatActivity implements View.OnClic
         Intent iGet = getIntent();
         this.Menu_ID = iGet.getStringExtra("menu_id");
         this.Menu_name = iGet.getStringExtra("menu_name");
+        getSupportActionBar().setTitle(Menu_name);
         this.Menu_image = iGet.getIntExtra("menu_image",0);
         Glide.with(imageView.getContext()).load(Menu_image).into(imageView);
         Menu_price = iGet.getStringExtra("menu_price");

@@ -106,17 +106,22 @@
 
                 </RelativeLayout>
 
-                <EditText android:enabled="false" android:textColor="@color/hint"
-                    android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end" android:id="@+id/edtOrderList"
-                    android:padding="10dp" android:layout_width="match_parent" android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp" android:layout_marginBottom="10dp"
-                    android:hint="@string/checkout_order_list"
-                    android:inputType="text"/>
                 <android.support.design.widget.TextInputLayout android:id="@+id/TextInputLayout8"
                     android:layout_width="match_parent" android:layout_height="wrap_content">
 
                     <EditText android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end" android:id="@+id/edtComment" android:padding="10dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="10dp" android:hint="@string/checkout_add_comment" android:inputType="text" />
                 </android.support.design.widget.TextInputLayout>
+
+
+                <Spinner
+                    android:id="@+id/spinner1"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:entries="@array/country_arrays"
+                    android:prompt="@string/country_prompt" />
+
 
                 <com.balysv.materialripple.MaterialRippleLayout
                     android:id="@+id/ripple" android:layout_width="match_parent"

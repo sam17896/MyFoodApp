@@ -35,7 +35,7 @@ public class ActivityCheckOut extends AppCompatActivity {
         spinner1.setOnItemSelectedListener(new CustomOnItemSelectedListener());
         btn = findViewById(R.id.btnSend);
         preference = new Preference(this);
-
+        getSupportActionBar().setTitle("Checkout");
         EDname.setText(preference.getKeyName());
         EDphone.setText(preference.getKeyPhone());
         EDemail.setText(preference.getKeyEmail());
