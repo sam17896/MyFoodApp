@@ -85,7 +85,8 @@ public class FragmentLocation extends Fragment implements Permission {
         this.floatingActionButton = this.relativeLayout.findViewById(R.id.navigate);
         this.floatingActionButton.setOnClickListener(new OnClickListener() {
             public void onClick(View view) {
-                if(textView.getText().toString().length()==5){
+                String regexStr = "^[0-9]{5}$";
+                if(textView.getText().toString().trim().matches(regexStr)){
                     preference.setPin("");
                     mapView.setVisibility(View.VISIBLE);
                 } else {
@@ -103,8 +104,8 @@ public class FragmentLocation extends Fragment implements Permission {
         this.mapView.getMapAsync(new OnMapReadyCallback() {
             public void onMapReady(GoogleMap googleMap) {
                 FragmentLocation.this.googleMap = googleMap;
-                    FragmentLocation.this.latitude =24.804188 ;
-                    FragmentLocation.this.longitude =24.804188 ;
+                    FragmentLocation.this.latitude =24.946218 ;
+                    FragmentLocation.this.longitude =67.005615 ;
                     LatLng loc = new LatLng(latitude.doubleValue(),longitude.doubleValue() );
                     googleMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
                     googleMap.addMarker(new MarkerOptions().title("Your Order").snippet("Be patient").position(loc)).showInfoWindow();
